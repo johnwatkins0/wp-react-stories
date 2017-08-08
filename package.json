@@ -1,0 +1,70 @@
+{
+  "name": "colby-wp-react-stories",
+  "version": "1.0.0",
+  "description": "A React-based, masonry-like display of categorized posts drawn from the WordPress REST API.",
+  "main": "src/",
+  "scripts": {
+    "build": "webpack -p",
+    "build-dev": "webpack",
+    "build-all": "npm run build && npm run build-dev"
+  },
+  "author": "John Watkins",
+  "keywords": [
+    "react",
+    "wordpress"
+  ],
+  "license": "ISC",
+  "devDependencies": {
+    "autoprefixer": "^7.1.2",
+    "babel-cli": "^6.24.1",
+    "babel-loader": "^7.1.1",
+    "babel-preset-es2015": "^6.24.1",
+    "babel-preset-react": "^6.24.1",
+    "babel-preset-stage-1": "^6.24.1",
+    "babel-webpack": "^1.0.0",
+    "css-loader": "^0.28.4",
+    "eslint-config-johnwatkins0": "^1.0.2",
+    "extract-text-webpack-plugin": "^2.1.0",
+    "node-autodeploy-wp": "^1.0.20",
+    "node-sass": "^4.5.2",
+    "postcss-loader": "^2.0.5",
+    "sass-loader": "^6.0.3",
+    "style-loader": "^0.17.0",
+    "webpack": "^2.5.0",
+    "webpack-bundle-analyzer": "^2.9.0"
+  },
+  "browserslist": [
+    "> 1%",
+    "last 2 versions",
+    "IE 11"
+  ],
+  "eslintConfig": {
+    "extends": [
+      "johnwatkins0"
+    ]
+  },
+  "eslintIgnore": [
+    "dist/*.js",
+    "postcss.config.js"
+  ],
+  "dependencies": {
+    "bootstrap": "git://github.com/twbs/bootstrap.git#v4-dev",
+    "colby-react-search-input": "^1.0.6",
+    "colby-scss": "^1.0.8",
+    "colby-wp-svg": "^1.1.4",
+    "date-fns": "^1.28.5",
+    "lodash": "^4.17.4",
+    "prop-types": "^15.5.10",
+    "react": "^15.6.1",
+    "react-animated-ellipsis": "^0.3.0",
+    "react-collapsible": "^1.5.0",
+    "react-dom": "^15.6.1",
+    "smoothscroll": "^0.3.0"
+  },
+  "babel": {
+    "presets": [
+      "es2015",
+      "react"
+    ]
+  }
+}
