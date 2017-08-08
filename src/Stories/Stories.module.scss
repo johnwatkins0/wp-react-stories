@@ -2,6 +2,10 @@
 @import '~bootstrap/scss/mixins';
 @import '~colby-scss/variables';
 
+:global(.stories-container) {
+  width: 100%;
+}
+
 .Stories {
   @include make-row;
   width: 100%;
