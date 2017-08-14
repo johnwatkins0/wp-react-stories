@@ -38,9 +38,8 @@ class Stories extends React.Component {
 
   constructor(props) {
     super(props);
-
     this.state = {
-      activeCategory: '0',
+      activeCategory: window.COLBY_STORIES_ACTIVE_CATEGORY || null,
       fetching: false,
       postCategories: {},
       columnCount: Stories.setColumnCount(),
@@ -133,7 +132,7 @@ class Stories extends React.Component {
 
     if (categories.length) {
       const base = `${window.COLBY_REST_URL}wp/v2/categories/`;
-      const url = `${base}?include=${categories.join(',')}&exclude=1`;
+      const url = `${base}?exclude=1`;
 
       fetch(url).then((response) => response.json()).then((receivedCategories) => {
         const postCategories = Object.assign({}, this.state.postCategories);
@@ -228,10 +227,14 @@ class Stories extends React.Component {
             return null;
           }
 
-          const { id, name } = this.state.postCategories[category];
+          const { id, name, meta } = this.state.postCategories[category];
           return (
             <div className={styles.categoryButtonContainer} key={id}>
               <button
+                style={{
+                  backgroundColor: meta.background_color || '#002878',
+                  color: meta.color || '#000',
+                }}
                 onClick={() => {
                   this.setState({ activeCategory: id }, () =>
                     smoothScroll(this.container)

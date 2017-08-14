@@ -165,7 +165,7 @@ var Stories = function (_React$Component) {
     var _this = _possibleConstructorReturn(this, (Stories.__proto__ || Object.getPrototypeOf(Stories)).call(this, props));
 
     _this.state = {
-      activeCategory: '0',
+      activeCategory: window.COLBY_STORIES_ACTIVE_CATEGORY || null,
       fetching: false,
       postCategories: {},
       columnCount: Stories.setColumnCount(),
@@ -271,7 +271,7 @@ var Stories = function (_React$Component) {
 
       if (categories.length) {
         var base = window.COLBY_REST_URL + 'wp/v2/categories/';
-        var url = base + '?include=' + categories.join(',') + '&exclude=1';
+        var url = base + '?exclude=1';
 
         fetch(url).then(function (response) {
           return response.json();
@@ -373,7 +373,8 @@ var Stories = function (_React$Component) {
 
           var _state$postCategories = _this8.state.postCategories[category],
               id = _state$postCategories.id,
-              name = _state$postCategories.name;
+              name = _state$postCategories.name,
+              meta = _state$postCategories.meta;
 
           return _react2.default.createElement(
             'div',
@@ -381,6 +382,10 @@ var Stories = function (_React$Component) {
             _react2.default.createElement(
               'button',
               {
+                style: {
+                  backgroundColor: meta.background_color || '#002878',
+                  color: meta.color || '#000'
+                },
                 onClick: function onClick() {
                   _this8.setState({ activeCategory: id }, function () {
                     return (0, _smoothscroll2.default)(_this8.container);
@@ -1176,3 +1181,4 @@ module.exports = dateFns;
 
 /***/ })
 /******/ ]);
+//# sourceMappingURL=colby-wp-react-stories.js.map

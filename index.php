@@ -25,9 +25,7 @@ add_action( 'init', 'init_stories' );
 
 add_action( 'wp_enqueue_scripts', function() {
 	$min = PROD === true ? '.min' : '';
-	$dist = PROD === true
-		? 'http://unpkg.com/colby-wp-react-stories@latest/dist'
-		: plugin_dir_url( __FILE__ ) . 'dist';
+	$dist = plugin_dir_url( __FILE__ ) . 'dist';
 
 
 	wp_register_script(
@@ -57,3 +55,36 @@ function maybe_enqueue_stories() {
 }
 
 add_action( 'wp_enqueue_scripts', 'maybe_enqueue_stories' );
+
+
+add_filter( 'rest_prepare_category', function( $response, $taxonomy ) {
+	$response->data['meta']['color'] = get_term_meta( $taxonomy->term_id, 'color', true );
+	$response->data['meta']['background_color'] = get_term_meta( $taxonomy->term_id, 'background-color', true );
+
+	return $response;
+}, 10, 2 );
+
+add_action( 'wp_footer', function() {
+	global $post;
+
+	if ( has_shortcode( $post->post_content, 'stories')
+			|| has_shortcode( $post->post_content, 'stories' ) ) {
+		if ( ! $_GET['category'] ) {
+			return;
+		}
+
+		$category = get_category_by_slug( $_GET['category'] );
+
+		if ( ! $category ) {
+			return;
+		}
+
+		ob_start(); ?>
+<script>
+window.COLBY_STORIES_ACTIVE_CATEGORY = '<?php echo $category->term_id; ?>';
+</script>
+		<?php
+
+		echo ob_get_clean();
+	}
+} );
