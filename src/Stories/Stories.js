@@ -39,7 +39,7 @@ class Stories extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      activeCategory: window.COLBY_STORIES_ACTIVE_CATEGORY || null,
+      activeCategory: window.COLBY_STORIES_ACTIVE_CATEGORY || '0',
       fetching: false,
       postCategories: {},
       columnCount: Stories.setColumnCount(),
@@ -153,7 +153,10 @@ class Stories extends React.Component {
         window.COLBY_SITE_URL
       )}&per_page=${this.props.perPage}`;
 
-      if (this.state.activeCategory !== '0') {
+      if (
+        this.state.activeCategory !== '0' &&
+        this.state.activeCategory !== null
+      ) {
         url = `${url}&categories=${this.state.activeCategory}`;
       }
 

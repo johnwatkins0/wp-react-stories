@@ -165,7 +165,7 @@ var Stories = function (_React$Component) {
     var _this = _possibleConstructorReturn(this, (Stories.__proto__ || Object.getPrototypeOf(Stories)).call(this, props));
 
     _this.state = {
-      activeCategory: window.COLBY_STORIES_ACTIVE_CATEGORY || null,
+      activeCategory: window.COLBY_STORIES_ACTIVE_CATEGORY || '0',
       fetching: false,
       postCategories: {},
       columnCount: Stories.setColumnCount(),
@@ -294,7 +294,7 @@ var Stories = function (_React$Component) {
       this.setState({ fetching: true }, function () {
         var url = _this7.props.endpoint.replace('{{siteUrl}}', window.COLBY_SITE_URL) + '&per_page=' + _this7.props.perPage;
 
-        if (_this7.state.activeCategory !== '0') {
+        if (_this7.state.activeCategory !== '0' && _this7.state.activeCategory !== null) {
           url = url + '&categories=' + _this7.state.activeCategory;
         }
 
