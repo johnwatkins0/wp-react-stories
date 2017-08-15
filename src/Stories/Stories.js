@@ -339,7 +339,7 @@ class Stories extends React.Component {
         ref={(container) => {
           this.container = container;
         }}
-        className={`${styles.Stories} row`}
+        className={`${styles.Stories}`}
       >
         <div className={styles.storiesHeader}>
           <div className={styles.search}>

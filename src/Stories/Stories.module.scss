@@ -7,8 +7,9 @@
 }
 
 .Stories {
-  @include make-row;
   width: 100%;
+  display: flex;
+  flex-wrap: wrap;
 }
 
 .column {
@@ -71,9 +72,14 @@
 .storiesHeader {
   width: 100%;
   display: flex;
+  flex-wrap: wrap;
   padding: .5rem 0;
   align-items: center;
   justify-content: space-between;
+
+  :global(.container) {
+    padding: 0;
+  }
 
   > div {
     @include make-col-ready;

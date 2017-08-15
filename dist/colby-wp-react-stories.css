@@ -99,14 +99,12 @@
   width: 100%; }
 
 .Stories {
+  width: 100%;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
   -ms-flex-wrap: wrap;
-      flex-wrap: wrap;
-  margin-right: -0.75rem;
-  margin-left: -0.75rem;
-  width: 100%; }
+      flex-wrap: wrap; }
 
 .column {
   position: relative;
@@ -183,6 +181,8 @@
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
   padding: .5rem 0;
   -webkit-box-align: center;
       -ms-flex-align: center;
@@ -190,6 +190,8 @@
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
           justify-content: space-between; }
+  .storiesHeader .container {
+    padding: 0; }
   .storiesHeader > div {
     position: relative;
     width: 100%;

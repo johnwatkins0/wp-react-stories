@@ -484,7 +484,7 @@ var Stories = function (_React$Component) {
           ref: function ref(container) {
             _this9.container = container;
           },
-          className: _StoriesModule2.default.Stories + ' row'
+          className: '' + _StoriesModule2.default.Stories
         },
         _react2.default.createElement(
           'div',
