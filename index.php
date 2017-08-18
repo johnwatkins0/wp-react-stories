@@ -14,7 +14,14 @@ function render_stories( $atts ) {
 
 	$per_page = $atts['per-page'] ? " data-per-page={$atts['per-page']}" : '';
 
-	return "<div data-stories class=stories-container data-endpoint={$atts['endpoint']} {$atts['per-page']}></div>";
+	return "
+		<div
+		  data-stories
+		  class=stories-container
+		  data-endpoint={$atts['endpoint']}
+		  {$atts['per-page']}
+		  >
+		</div>";
 }
 
 function init_stories() {
@@ -31,15 +38,15 @@ add_action( 'wp_enqueue_scripts', function() {
 
 
 	wp_register_script(
-		'stories', "$dist/colby-wp-react-stories$min.js",
+		$package_json->name, "$dist/{$package_json->name}$min.js",
 		['react', 'react-dom', 'prop-types', 'date-fns', 'lodash'],
 		$package_json->version,
 		true
 	);
 
 	wp_register_style(
-		'stories',
-		"$dist/colby-wp-react-stories$min.css",
+		$package_json->name,
+		"$dist/{$$package_json->name}$min.css",
 		['colby-bootstrap'],
 		$package_json->version
 	);

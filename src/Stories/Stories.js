@@ -292,10 +292,7 @@ class Stories extends React.Component {
               dangerouslySetInnerHTML={{ __html: post.title.rendered }}
             />
           </h3>
-          <p
-            className="small"
-            dangerouslySetInnerHTML={{ __html: post.excerpt.rendered }}
-          />
+          <p dangerouslySetInnerHTML={{ __html: post.excerpt.rendered }} />
         </div>
         <date dateTime={post.date} className={styles.cardFooter}>
           {dateFns.distanceInWords(new Date(), post.date, { addSuffix: true })}

@@ -433,10 +433,7 @@ var Stories = function (_React$Component) {
               dangerouslySetInnerHTML: { __html: post.title.rendered }
             })
           ),
-          _react2.default.createElement('p', {
-            className: 'small',
-            dangerouslySetInnerHTML: { __html: post.excerpt.rendered }
-          })
+          _react2.default.createElement('p', { dangerouslySetInnerHTML: { __html: post.excerpt.rendered } })
         ),
         _react2.default.createElement(
           'date',
