@@ -31,40 +31,32 @@ function init_stories() {
 add_action( 'init', 'init_stories' );
 
 add_action( 'wp_enqueue_scripts', function() {
-	$package_json = json_decode( file_get_contents( __DIR__ . '/package.json' ) )
-		?: (object) [ 'version' => '1.0.1' ];
-	$min = PROD === true ? '.min' : '';
-	$dist = plugin_dir_url( __FILE__ ) . 'dist';
-
-
-	wp_register_script(
-		$package_json->name, "$dist/{$package_json->name}$min.js",
-		['react', 'react-dom', 'prop-types', 'date-fns', 'lodash'],
-		$package_json->version,
-		true
-	);
-
-	wp_register_style(
-		$package_json->name,
-		"$dist/{$$package_json->name}$min.css",
-		['colby-bootstrap'],
-		$package_json->version
-	);
-}, 10, 1 );
-
-
-function maybe_enqueue_stories() {
 	global $post;
 
 	if ( has_shortcode( $post->post_content, 'stories')
 			|| has_shortcode( $post->post_content, 'stories' ) ) {
-		wp_enqueue_script( 'stories' );
-		wp_enqueue_style( 'stories' );
+
+		$package_json = json_decode( file_get_contents( __DIR__ . '/package.json' ) )
+			?: (object) [ 'version' => '1.0.1' ];
+		$min = PROD === true ? '.min' : '';
+		$dist = plugin_dir_url( __FILE__ ) . 'dist';
+
+
+		wp_enqueue_script(
+			$package_json->name, "$dist/{$package_json->name}$min.js",
+			['react', 'react-dom', 'prop-types', 'date-fns', 'lodash'],
+			$package_json->version,
+			true
+		);
+
+		wp_enqueue_style(
+			$package_json->name,
+			"$dist/{$package_json->name}$min.css",
+			['colby-bootstrap'],
+			$package_json->version
+		);
 	}
-}
-
-add_action( 'wp_enqueue_scripts', 'maybe_enqueue_stories' );
-
+}, 10, 1 );
 
 add_filter( 'rest_prepare_category', function( $response, $taxonomy ) {
 	$response->data['meta']['color'] = get_term_meta( $taxonomy->term_id, 'color', true );
