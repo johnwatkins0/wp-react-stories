@@ -271,7 +271,7 @@ var Stories = function (_React$Component) {
 
       if (categories.length) {
         var base = window.COLBY_REST_URL + 'wp/v2/categories/';
-        var url = base + '?exclude=1';
+        var url = base + '?exclude=1&per_page=99';
 
         fetch(url).then(function (response) {
           return response.json();
@@ -364,9 +364,9 @@ var Stories = function (_React$Component) {
       var _this8 = this;
 
       return _react2.default.createElement(
-        'span',
+        'div',
         null,
-        categories.map(function (category) {
+        [categories[0]].map(function (category) {
           if (!(category in _this8.state.postCategories)) {
             return null;
           }
@@ -380,16 +380,12 @@ var Stories = function (_React$Component) {
             'div',
             { className: _StoriesModule2.default.categoryButtonContainer, key: id },
             _react2.default.createElement(
-              'button',
+              'a',
               {
+                href: meta.site_url,
                 style: {
                   backgroundColor: meta.background_color || '#002878',
                   color: meta.color || '#000'
-                },
-                onClick: function onClick() {
-                  _this8.setState({ activeCategory: id }, function () {
-                    return (0, _smoothscroll2.default)(_this8.container);
-                  });
                 },
                 className: _StoriesModule2.default.categoryButton + ' badge'
               },

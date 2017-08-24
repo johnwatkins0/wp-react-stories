@@ -61,6 +61,7 @@ add_action( 'wp_enqueue_scripts', function() {
 add_filter( 'rest_prepare_category', function( $response, $taxonomy ) {
 	$response->data['meta']['color'] = get_term_meta( $taxonomy->term_id, 'color', true );
 	$response->data['meta']['background_color'] = get_term_meta( $taxonomy->term_id, 'background-color', true );
+	$response->data['meta']['site_url'] = get_term_meta( $taxonomy->term_id, 'site_url', true );
 
 	return $response;
 }, 10, 2 );

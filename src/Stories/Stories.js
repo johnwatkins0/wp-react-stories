@@ -132,7 +132,7 @@ class Stories extends React.Component {
 
     if (categories.length) {
       const base = `${window.COLBY_REST_URL}wp/v2/categories/`;
-      const url = `${base}?exclude=1`;
+      const url = `${base}?exclude=1&per_page=99`;
 
       fetch(url).then((response) => response.json()).then((receivedCategories) => {
         const postCategories = Object.assign({}, this.state.postCategories);
@@ -224,8 +224,8 @@ class Stories extends React.Component {
 
   renderPostCategories(categories) {
     return (
-      <span>
-        {categories.map((category) => {
+      <div>
+        {[categories[0]].map((category) => {
           if (!(category in this.state.postCategories)) {
             return null;
           }
@@ -233,24 +233,20 @@ class Stories extends React.Component {
           const { id, name, meta } = this.state.postCategories[category];
           return (
             <div className={styles.categoryButtonContainer} key={id}>
-              <button
+              <a
+                href={meta.site_url}
                 style={{
                   backgroundColor: meta.background_color || '#002878',
                   color: meta.color || '#000',
                 }}
-                onClick={() => {
-                  this.setState({ activeCategory: id }, () =>
-                    smoothScroll(this.container)
-                  );
-                }}
                 className={`${styles.categoryButton} badge`}
               >
                 {name}
-              </button>
+              </a>
             </div>
           );
         })}
-      </span>
+      </div>
     );
   }
 
