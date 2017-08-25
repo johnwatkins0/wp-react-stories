@@ -222,10 +222,14 @@ class Stories extends React.Component {
     );
   }
 
-  renderPostCategories(categories) {
+  renderPostCategories(categories, hasFeaturedImage) {
     return (
-      <div>
-        {[categories[0]].map((category) => {
+      <div
+        className={`${styles.categoriesContainer}${hasFeaturedImage
+          ? ' hasFeaturedImage'
+          : ''}`}
+      >
+        {categories.map((category) => {
           if (!(category in this.state.postCategories)) {
             return null;
           }
@@ -281,7 +285,6 @@ class Stories extends React.Component {
       >
         {featuredImage}
         <div className="card-body">
-          {this.renderPostCategories(post.categories)}
           <h3 className="card-title">
             <a
               href={post.link}
@@ -290,9 +293,14 @@ class Stories extends React.Component {
           </h3>
           <p dangerouslySetInnerHTML={{ __html: post.excerpt.rendered }} />
         </div>
-        <date dateTime={post.date} className={styles.cardFooter}>
-          {dateFns.distanceInWords(new Date(), post.date, { addSuffix: true })}
-        </date>
+        <div className={styles.cardFooter}>
+          <date dateTime={post.date}>
+            {dateFns.distanceInWords(new Date(), post.date, {
+              addSuffix: true,
+            })}
+          </date>
+          {this.renderPostCategories(post.categories, !!featuredImage)}
+        </div>
       </div>
     );
   }

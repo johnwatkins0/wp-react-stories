@@ -360,13 +360,15 @@ var Stories = function (_React$Component) {
     }
   }, {
     key: 'renderPostCategories',
-    value: function renderPostCategories(categories) {
+    value: function renderPostCategories(categories, hasFeaturedImage) {
       var _this8 = this;
 
       return _react2.default.createElement(
         'div',
-        null,
-        [categories[0]].map(function (category) {
+        {
+          className: '' + _StoriesModule2.default.categoriesContainer + (hasFeaturedImage ? ' hasFeaturedImage' : '')
+        },
+        categories.map(function (category) {
           if (!(category in _this8.state.postCategories)) {
             return null;
           }
@@ -420,7 +422,6 @@ var Stories = function (_React$Component) {
         _react2.default.createElement(
           'div',
           { className: 'card-body' },
-          this.renderPostCategories(post.categories),
           _react2.default.createElement(
             'h3',
             { className: 'card-title' },
@@ -432,9 +433,16 @@ var Stories = function (_React$Component) {
           _react2.default.createElement('p', { dangerouslySetInnerHTML: { __html: post.excerpt.rendered } })
         ),
         _react2.default.createElement(
-          'date',
-          { dateTime: post.date, className: _StoriesModule2.default.cardFooter },
-          _dateFns2.default.distanceInWords(new Date(), post.date, { addSuffix: true })
+          'div',
+          { className: _StoriesModule2.default.cardFooter },
+          _react2.default.createElement(
+            'date',
+            { dateTime: post.date },
+            _dateFns2.default.distanceInWords(new Date(), post.date, {
+              addSuffix: true
+            })
+          ),
+          this.renderPostCategories(post.categories, !!featuredImage)
         )
       );
     }
@@ -1152,7 +1160,7 @@ module.exports = {"ellipsis":"ellipsis","blink":"blink"};
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
-module.exports = {"Stories":"Stories","column":"column","item":"item","hasFeaturedImage":"hasFeaturedImage","categoryButton":"categoryButton","categories":"categories","cardFooter":"cardFooter","storiesHeader":"storiesHeader","categoryLabelText":"categoryLabelText","ellipsisContainer":"ellipsisContainer","buttonContainer":"buttonContainer"};
+module.exports = {"Stories":"Stories","column":"column","item":"item","hasFeaturedImage":"hasFeaturedImage","categoriesContainer":"categoriesContainer","categoryButton":"categoryButton","categories":"categories","cardFooter":"cardFooter","storiesHeader":"storiesHeader","categoryLabelText":"categoryLabelText","ellipsisContainer":"ellipsisContainer","buttonContainer":"buttonContainer"};
 
 /***/ }),
 /* 15 */
