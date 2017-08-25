@@ -430,11 +430,6 @@ var Stories = function (_React$Component) {
               dangerouslySetInnerHTML: { __html: post.title.rendered }
             })
           ),
-          _react2.default.createElement('p', { dangerouslySetInnerHTML: { __html: post.excerpt.rendered } })
-        ),
-        _react2.default.createElement(
-          'div',
-          { className: _StoriesModule2.default.cardFooter },
           _react2.default.createElement(
             'date',
             { dateTime: post.date },
@@ -442,6 +437,11 @@ var Stories = function (_React$Component) {
               addSuffix: true
             })
           ),
+          _react2.default.createElement('p', { dangerouslySetInnerHTML: { __html: post.excerpt.rendered } })
+        ),
+        _react2.default.createElement(
+          'div',
+          { className: _StoriesModule2.default.cardFooter },
           this.renderPostCategories(post.categories, !!featuredImage)
         )
       );
@@ -1160,7 +1160,7 @@ module.exports = {"ellipsis":"ellipsis","blink":"blink"};
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
-module.exports = {"Stories":"Stories","column":"column","item":"item","hasFeaturedImage":"hasFeaturedImage","categoriesContainer":"categoriesContainer","categoryButton":"categoryButton","categories":"categories","cardFooter":"cardFooter","storiesHeader":"storiesHeader","categoryLabelText":"categoryLabelText","ellipsisContainer":"ellipsisContainer","buttonContainer":"buttonContainer"};
+module.exports = {"Stories":"Stories","column":"column","item":"item","hasFeaturedImage":"hasFeaturedImage","categoriesContainer":"categoriesContainer","categoryButtonContainer":"categoryButtonContainer","categoryButton":"categoryButton","categories":"categories","cardFooter":"cardFooter","storiesHeader":"storiesHeader","categoryLabelText":"categoryLabelText","ellipsisContainer":"ellipsisContainer","buttonContainer":"buttonContainer"};
 
 /***/ }),
 /* 15 */

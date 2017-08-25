@@ -134,15 +134,35 @@
   padding-top: .5rem; }
   .item.hasFeaturedImage {
     padding-top: 0; }
+  .item date {
+    display: block;
+    margin-bottom: .375rem; }
   .item .card-title {
-    font-size: 1.19rem; }
+    font-size: 1.19rem;
+    margin-bottom: .25rem; }
   .item .card-body {
     padding-bottom: .75rem; }
 
 .categoriesContainer {
-  padding-top: .375rem; }
-  .categoriesContainer .categoryButton:last-of-type {
-    margin-bottom: 0; }
+  padding-top: .375rem;
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between; }
+
+.categoryButtonContainer {
+  width: 48%;
+  -webkit-transition: opacity .2s, -webkit-transform .2s;
+  transition: opacity .2s, -webkit-transform .2s;
+  transition: opacity .2s, transform .2s;
+  transition: opacity .2s, transform .2s, -webkit-transform .2s; }
+  .categoryButtonContainer:hover {
+    opacity: .9;
+    -webkit-transform: scale(1.05);
+            transform: scale(1.05); }
 
 .categoryButton {
   cursor: pointer;
@@ -152,6 +172,8 @@
   text-transform: uppercase;
   white-space: normal;
   width: 100%; }
+  .categoryButton:hover {
+    text-decoration: none; }
 
 .categories {
   width: 100%;
@@ -175,20 +197,7 @@
     width: 100%; }
 
 .cardFooter {
-  padding: 0 1.125rem 1.125rem;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
-  -webkit-box-align: end;
-      -ms-flex-align: end;
-          align-items: flex-end; }
-  .cardFooter > * {
-    -webkit-box-flex: 1;
-        -ms-flex: 1 1 50%;
-            flex: 1 1 50%; }
+  padding: 0 1.125rem 1.125rem; }
 
 .storiesHeader {
   width: 100%;

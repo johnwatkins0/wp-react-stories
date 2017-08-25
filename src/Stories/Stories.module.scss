@@ -33,8 +33,14 @@
     padding-top: 0;
   }
 
+  date {
+    display: block;
+    margin-bottom: .375rem;
+  }
+
   :global(.card-title) {
     font-size: 1.19rem;
+    margin-bottom: .25rem;
   }
 
   :global(.card-body) {
@@ -44,9 +50,18 @@
 
 .categoriesContainer {
   padding-top: .375rem;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
 
-  > div:last-of-type .categoryButton {
-    margin-bottom: 0;
+.categoryButtonContainer {
+  width: 48%;
+  transition: opacity .2s, transform .2s;
+
+  &:hover {
+    opacity: .9;
+    transform: scale(1.05);
   }
 }
 
@@ -58,6 +73,10 @@
   text-transform: uppercase;
   white-space: normal;
   width: 100%;
+
+  &:hover {
+    text-decoration: none;
+  }
 }
 
 .categories {
@@ -75,18 +94,6 @@
 
 .cardFooter {
   padding: 0 1.125rem 1.125rem;
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-end;
-
-  > * {
-    flex: 1 1 50%;
-  }
-
-  date {
-    padding-right: .5rem;
-    line-height: 1.19;
-  }
 }
 
 .storiesHeader {

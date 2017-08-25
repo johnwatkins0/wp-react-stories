@@ -291,14 +291,14 @@ class Stories extends React.Component {
               dangerouslySetInnerHTML={{ __html: post.title.rendered }}
             />
           </h3>
-          <p dangerouslySetInnerHTML={{ __html: post.excerpt.rendered }} />
-        </div>
-        <div className={styles.cardFooter}>
           <date dateTime={post.date}>
             {dateFns.distanceInWords(new Date(), post.date, {
               addSuffix: true,
             })}
           </date>
+          <p dangerouslySetInnerHTML={{ __html: post.excerpt.rendered }} />
+        </div>
+        <div className={styles.cardFooter}>
           {this.renderPostCategories(post.categories, !!featuredImage)}
         </div>
       </div>
