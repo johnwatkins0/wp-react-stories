@@ -45,10 +45,6 @@
 .categoriesContainer {
   padding-top: .375rem;
 
-  > div:first-of-type {
-    padding-right: .5rem;
-  }
-
   > div:last-of-type .categoryButton {
     margin-bottom: 0;
   }
@@ -85,6 +81,10 @@
 
   > * {
     flex: 1 1 50%;
+  }
+
+  date {
+    padding-right: .5rem;
   }
 }
 
