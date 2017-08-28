@@ -90,8 +90,6 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.loadStories = undefined;
 
-var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
-
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 var _propTypes = __webpack_require__(1);
@@ -121,10 +119,6 @@ var _reactAnimatedEllipsis2 = _interopRequireDefault(_reactAnimatedEllipsis);
 var _colbyReactSearchInput = __webpack_require__(6);
 
 var _colbyReactSearchInput2 = _interopRequireDefault(_colbyReactSearchInput);
-
-var _smoothscroll = __webpack_require__(10);
-
-var _smoothscroll2 = _interopRequireDefault(_smoothscroll);
 
 var _StoriesModule = __webpack_require__(14);
 
@@ -292,7 +286,7 @@ var Stories = function (_React$Component) {
       var _this7 = this;
 
       this.setState({ fetching: true }, function () {
-        var url = _this7.props.endpoint.replace('{{siteUrl}}', window.COLBY_SITE_URL) + '&per_page=' + _this7.props.perPage;
+        var url = _this7.props.endpoint + '&per_page=' + _this7.props.perPage;
 
         if (_this7.state.activeCategory !== '0' && _this7.state.activeCategory !== null) {
           url = url + '&categories=' + _this7.state.activeCategory;
@@ -402,7 +396,7 @@ var Stories = function (_React$Component) {
     value: function renderPost(post) {
       var featuredImage = null;
       if (post.featured_media in this.state.featuredImages && this.state.featuredImages[post.featured_media] !== null && this.state.featuredImages[post.featured_media].media_details) {
-        var data = this.state.featuredImages[post.featured_media].media_details.sizes.medium;
+        var data = this.state.featuredImages[post.featured_media].media_details.sizes.large || this.state.featuredImages[post.featured_media].media_details.sizes.medium;
         featuredImage = _react2.default.createElement('img', {
           className: 'card-img',
           alt: post.title.rendered,
@@ -558,7 +552,12 @@ Stories.defaultProps = {
 
 var loadStories = function loadStories() {
   Array.prototype.forEach.call(document.querySelectorAll('[data-stories]'), function (container) {
-    _reactDom2.default.render(_react2.default.createElement(Stories, _extends({ container: container }, container.dataset)), container);
+    var props = {
+      container: container,
+      endpoint: container.getAttribute('data-endpoint'),
+      perPage: container.getAttribute('data-per-page') || '12'
+    };
+    _reactDom2.default.render(_react2.default.createElement(Stories, props), container);
   });
 };
 
@@ -996,141 +995,7 @@ exports.default = ReactAnimatedEllipsis;
 module.exports = __webpack_require__(8);
 
 /***/ }),
-/* 10 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_RESULT__;
-
-var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
-
-(function (root, smoothScroll) {
-    'use strict';
-
-    // Support RequireJS and CommonJS/NodeJS module formats.
-    // Attach smoothScroll to the `window` when executed as a <script>.
-
-    // RequireJS
-
-    if (true) {
-        !(__WEBPACK_AMD_DEFINE_FACTORY__ = (smoothScroll),
-				__WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ?
-				(__WEBPACK_AMD_DEFINE_FACTORY__.call(exports, __webpack_require__, exports, module)) :
-				__WEBPACK_AMD_DEFINE_FACTORY__),
-				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
-
-        // CommonJS
-    } else if ((typeof exports === 'undefined' ? 'undefined' : _typeof(exports)) === 'object' && (typeof module === 'undefined' ? 'undefined' : _typeof(module)) === 'object') {
-        module.exports = smoothScroll();
-    } else {
-        root.smoothScroll = smoothScroll();
-    }
-})(undefined, function () {
-    'use strict';
-
-    // Do not initialize smoothScroll when running server side, handle it in client:
-
-    if ((typeof window === 'undefined' ? 'undefined' : _typeof(window)) !== 'object') return;
-
-    // We do not want this script to be applied in browsers that do not support those
-    // That means no smoothscroll on IE9 and below.
-    if (document.querySelectorAll === void 0 || window.pageYOffset === void 0 || history.pushState === void 0) {
-        return;
-    }
-
-    // Get the top position of an element in the document
-    var getTop = function getTop(element, start) {
-        // return value of html.getBoundingClientRect().top ... IE : 0, other browsers : -pageYOffset
-        if (element.nodeName === 'HTML') return -start;
-        return element.getBoundingClientRect().top + start;
-    };
-    // ease in out function thanks to:
-    // http://blog.greweb.fr/2012/02/bezier-curve-based-easing-functions-from-concept-to-implementation/
-    var easeInOutCubic = function easeInOutCubic(t) {
-        return t < .5 ? 4 * t * t * t : (t - 1) * (2 * t - 2) * (2 * t - 2) + 1;
-    };
-
-    // calculate the scroll position we should be in
-    // given the start and end point of the scroll
-    // the time elapsed from the beginning of the scroll
-    // and the total duration of the scroll (default 500ms)
-    var position = function position(start, end, elapsed, duration) {
-        if (elapsed > duration) return end;
-        return start + (end - start) * easeInOutCubic(elapsed / duration); // <-- you can change the easing funtion there
-        // return start + (end - start) * (elapsed / duration); // <-- this would give a linear scroll
-    };
-
-    // we use requestAnimationFrame to be called by the browser before every repaint
-    // if the first argument is an element then scroll to the top of this element
-    // if the first argument is numeric then scroll to this location
-    // if the callback exist, it is called when the scrolling is finished
-    // if context is set then scroll that element, else scroll window
-    var smoothScroll = function smoothScroll(el, duration, callback, context) {
-        duration = duration || 500;
-        context = context || window;
-        var start = context.scrollTop || window.pageYOffset;
-
-        if (typeof el === 'number') {
-            var end = parseInt(el);
-        } else {
-            var end = getTop(el, start);
-        }
-
-        var clock = Date.now();
-        var requestAnimationFrame = window.requestAnimationFrame || window.mozRequestAnimationFrame || window.webkitRequestAnimationFrame || function (fn) {
-            window.setTimeout(fn, 15);
-        };
-
-        var step = function step() {
-            var elapsed = Date.now() - clock;
-            if (context !== window) {
-                context.scrollTop = position(start, end, elapsed, duration);
-            } else {
-                window.scroll(0, position(start, end, elapsed, duration));
-            }
-
-            if (elapsed > duration) {
-                if (typeof callback === 'function') {
-                    callback(el);
-                }
-            } else {
-                requestAnimationFrame(step);
-            }
-        };
-        step();
-    };
-
-    var linkHandler = function linkHandler(ev) {
-        ev.preventDefault();
-
-        if (location.hash !== this.hash) window.history.pushState(null, null, this.hash);
-        // using the history api to solve issue #1 - back doesn't work
-        // most browser don't update :target when the history api is used:
-        // THIS IS A BUG FROM THE BROWSERS.
-        // change the scrolling duration in this call
-        var node = document.getElementById(this.hash.substring(1));
-        if (!node) return; // Do not scroll to non-existing node
-
-        smoothScroll(node, 500, function (el) {
-            location.replace('#' + el.id);
-            // this will cause the :target to be activated.
-        });
-    };
-
-    // We look for all the internal links in the documents and attach the smoothscroll function
-    document.addEventListener("DOMContentLoaded", function () {
-        var internal = document.querySelectorAll('a[href^="#"]:not([href="#"])'),
-            a;
-        for (var i = internal.length; a = internal[--i];) {
-            a.addEventListener("click", linkHandler, false);
-        }
-    });
-
-    // return smoothscroll API
-    return smoothScroll;
-});
-
-/***/ }),
+/* 10 */,
 /* 11 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -1160,7 +1025,7 @@ module.exports = {"ellipsis":"ellipsis","blink":"blink"};
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
-module.exports = {"Stories":"Stories","column":"column","item":"item","hasFeaturedImage":"hasFeaturedImage","categoriesContainer":"categoriesContainer","categoryButtonContainer":"categoryButtonContainer","categoryButton":"categoryButton","categories":"categories","cardFooter":"cardFooter","storiesHeader":"storiesHeader","categoryLabelText":"categoryLabelText","ellipsisContainer":"ellipsisContainer","buttonContainer":"buttonContainer"};
+module.exports = {"Stories":"Stories","column":"column","item":"item","hasFeaturedImage":"hasFeaturedImage","categoriesContainer":"categoriesContainer","categoryButtonContainer":"categoryButtonContainer","categories":"categories","categoryButton":"categoryButton","cardFooter":"cardFooter","storiesHeader":"storiesHeader","categoryLabelText":"categoryLabelText","ellipsisContainer":"ellipsisContainer","buttonContainer":"buttonContainer"};
 
 /***/ }),
 /* 15 */

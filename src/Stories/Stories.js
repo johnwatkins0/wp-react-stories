@@ -7,7 +7,6 @@ import dateFns from 'date-fns';
 import _ from 'lodash';
 import AnimatedEllipsis from 'react-animated-ellipsis';
 import SearchInput from 'colby-react-search-input';
-import smoothScroll from 'smoothscroll';
 
 import styles from './Stories.module.scss';
 
@@ -38,6 +37,7 @@ class Stories extends React.Component {
 
   constructor(props) {
     super(props);
+
     this.state = {
       activeCategory: window.COLBY_STORIES_ACTIVE_CATEGORY || '0',
       fetching: false,
@@ -148,10 +148,7 @@ class Stories extends React.Component {
 
   fetchPosts() {
     this.setState({ fetching: true }, () => {
-      let url = `${this.props.endpoint.replace(
-        '{{siteUrl}}',
-        window.COLBY_SITE_URL
-      )}&per_page=${this.props.perPage}`;
+      let url = `${this.props.endpoint}&per_page=${this.props.perPage}`;
 
       if (
         this.state.activeCategory !== '0' &&
@@ -387,10 +384,12 @@ const loadStories = () => {
   Array.prototype.forEach.call(
     document.querySelectorAll('[data-stories]'),
     (container) => {
-      ReactDOM.render(
-        <Stories container={container} {...container.dataset} />,
-        container
-      );
+      const props = {
+        container,
+        endpoint: container.getAttribute('data-endpoint'),
+        perPage: container.getAttribute('data-per-page') || '12',
+      };
+      ReactDOM.render(<Stories {...props} />, container);
     }
   );
 };
