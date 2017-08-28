@@ -261,8 +261,11 @@ class Stories extends React.Component {
       this.state.featuredImages[post.featured_media] !== null &&
       this.state.featuredImages[post.featured_media].media_details
     ) {
-      const data = this.state.featuredImages[post.featured_media].media_details
-        .sizes.medium;
+      const data =
+        this.state.featuredImages[post.featured_media].media_details.sizes
+          .large ||
+        this.state.featuredImages[post.featured_media].media_details.sizes
+          .medium;
       featuredImage = (
         <img
           className="card-img"

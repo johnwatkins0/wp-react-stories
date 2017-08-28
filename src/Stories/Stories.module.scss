@@ -7,21 +7,21 @@
 }
 
 .Stories {
-  width: 100%;
   display: flex;
   flex-wrap: wrap;
+  width: 100%;
 }
 
 .column {
-  @include make-col-ready;
   @include make-col(12);
 
   @media screen and (min-width: map-get($grid-breakpoints, 'md')) {
     @include make-col(6);
+    @include make-col-ready;
   }
 
   @media screen and (min-width: map-get($grid-breakpoints, 'lg')) {
-    @include make-col(3);
+    @include make-col(4);
   }
 }
 
@@ -39,8 +39,8 @@
   }
 
   :global(.card-title) {
-    font-size: 1.19rem;
     margin-bottom: .25rem;
+    font-size: 1.19rem;
   }
 
   :global(.card-body) {
@@ -49,10 +49,10 @@
 }
 
 .categoriesContainer {
-  padding-top: .375rem;
-  width: 100%;
   display: flex;
   justify-content: space-between;
+  padding-top: .375rem;
+  width: 100%;
 }
 
 .categoryButtonContainer {
@@ -65,14 +65,19 @@
   }
 }
 
+.categories label,
+.categories select {
+  max-width: 100%;
+}
+
 .categoryButton {
-  cursor: pointer;
+  margin-bottom: .25rem;
+  width: 100%;
   border: none;
   background: $blue;
-  margin-bottom: .25rem;
   text-transform: uppercase;
   white-space: normal;
-  width: 100%;
+  cursor: pointer;
 
   &:hover {
     text-decoration: none;
@@ -84,11 +89,12 @@
   text-align: right;
 
   > span {
-    @include make-col-ready;
-    @include make-col(12);
     display: flex;
     justify-content: center;
     width: 100%;
+
+    @include make-col-ready;
+    @include make-col(12);
   }
 }
 
@@ -97,12 +103,12 @@
 }
 
 .storiesHeader {
-  width: 100%;
   display: flex;
-  flex-wrap: wrap;
-  padding: .5rem 0;
   align-items: center;
+  flex-wrap: wrap;
   justify-content: space-between;
+  padding: .5rem 0;
+  width: 100%;
 
   :global(.container) {
     padding: 0;
@@ -119,29 +125,29 @@
 }
 
 .categoryLabelText {
-  font-size: .841rem;
+  margin-right: .25rem;
   color: $gray-800;
   text-transform: uppercase;
-  margin-right: .25rem;
+  font-size: .841rem;
 }
 
 .ellipsisContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   min-height: 15rem;
   width: 100%;
-  justify-content: center;
-  align-items: center;
-  display: flex;
   font-size: 8rem;
 }
 
 .buttonContainer {
-  text-align: center;
-  width: 100%;
   padding-top: .75rem;
+  width: 100%;
+  text-align: center;
 
   button {
-    transform: scale(.9);
     cursor: pointer;
+    transform: scale(.9);
 
     &:hover {
       transform: scale(.94);
