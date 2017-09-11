@@ -33,7 +33,7 @@ add_action( 'init', 'init_stories' );
 add_action( 'wp_enqueue_scripts', function() {
 	global $post;
 
-	if ( has_shortcode( $post->post_content, 'stories')
+	if ( has_shortcode( $post->post_content, 'stories' )
 			|| has_shortcode( $post->post_content, 'stories' ) ) {
 
 		$package_json = json_decode( file_get_contents( __DIR__ . '/package.json' ) )
@@ -41,10 +41,9 @@ add_action( 'wp_enqueue_scripts', function() {
 		$min = PROD === true ? '.min' : '';
 		$dist = plugin_dir_url( __FILE__ ) . 'dist';
 
-
 		wp_enqueue_script(
 			$package_json->name, "$dist/{$package_json->name}$min.js",
-			['react', 'react-dom', 'prop-types', 'date-fns', 'lodash'],
+			[ 'react', 'react-dom', 'prop-types', 'date-fns', 'lodash' ],
 			$package_json->version,
 			true
 		);
@@ -52,7 +51,7 @@ add_action( 'wp_enqueue_scripts', function() {
 		wp_enqueue_style(
 			$package_json->name,
 			"$dist/{$package_json->name}$min.css",
-			['colby-bootstrap'],
+			[],
 			$package_json->version
 		);
 	}
@@ -69,7 +68,7 @@ add_filter( 'rest_prepare_category', function( $response, $taxonomy ) {
 add_action( 'wp_footer', function() {
 	global $post;
 
-	if ( has_shortcode( $post->post_content, 'stories')
+	if ( has_shortcode( $post->post_content, 'stories' )
 			|| has_shortcode( $post->post_content, 'stories' ) ) {
 		if ( ! $_GET['category'] ) {
 			return;

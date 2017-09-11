@@ -63,7 +63,7 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 11);
+/******/ 	return __webpack_require__(__webpack_require__.s = 10);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -100,15 +100,15 @@ var _react = __webpack_require__(0);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _reactDom = __webpack_require__(15);
+var _reactDom = __webpack_require__(14);
 
 var _reactDom2 = _interopRequireDefault(_reactDom);
 
-var _dateFns = __webpack_require__(17);
+var _dateFns = __webpack_require__(16);
 
 var _dateFns2 = _interopRequireDefault(_dateFns);
 
-var _lodash = __webpack_require__(16);
+var _lodash = __webpack_require__(15);
 
 var _lodash2 = _interopRequireDefault(_lodash);
 
@@ -120,7 +120,7 @@ var _colbyReactSearchInput = __webpack_require__(6);
 
 var _colbyReactSearchInput2 = _interopRequireDefault(_colbyReactSearchInput);
 
-var _StoriesModule = __webpack_require__(14);
+var _StoriesModule = __webpack_require__(13);
 
 var _StoriesModule2 = _interopRequireDefault(_StoriesModule);
 
@@ -678,7 +678,7 @@ var _react = __webpack_require__(0);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _ellipsis = __webpack_require__(13);
+var _ellipsis = __webpack_require__(12);
 
 var _ellipsis2 = _interopRequireDefault(_ellipsis);
 
@@ -733,7 +733,7 @@ var _searchIcon = __webpack_require__(7);
 
 var _searchIcon2 = _interopRequireDefault(_searchIcon);
 
-var _defaultsModule = __webpack_require__(12);
+var _defaultsModule = __webpack_require__(11);
 
 var _defaultsModule2 = _interopRequireDefault(_defaultsModule);
 
@@ -995,8 +995,7 @@ exports.default = ReactAnimatedEllipsis;
 module.exports = __webpack_require__(8);
 
 /***/ }),
-/* 10 */,
-/* 11 */
+/* 10 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1007,40 +1006,40 @@ var _Stories = __webpack_require__(2);
 window.addEventListener('load', _Stories.loadStories);
 
 /***/ }),
-/* 12 */
+/* 11 */
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
 module.exports = {"container":"container","optionsContainer":"optionsContainer","label":"label","feedback":"feedback","label-name":"label-name","input":"input"};
 
 /***/ }),
-/* 13 */
+/* 12 */
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
 module.exports = {"ellipsis":"ellipsis","blink":"blink"};
 
 /***/ }),
-/* 14 */
+/* 13 */
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
 module.exports = {"Stories":"Stories","column":"column","item":"item","hasFeaturedImage":"hasFeaturedImage","categoriesContainer":"categoriesContainer","categoryButtonContainer":"categoryButtonContainer","categories":"categories","categoryButton":"categoryButton","cardFooter":"cardFooter","storiesHeader":"storiesHeader","categoryLabelText":"categoryLabelText","ellipsisContainer":"ellipsisContainer","buttonContainer":"buttonContainer"};
 
 /***/ }),
-/* 15 */
+/* 14 */
 /***/ (function(module, exports) {
 
 module.exports = ReactDOM;
 
 /***/ }),
-/* 16 */
+/* 15 */
 /***/ (function(module, exports) {
 
 module.exports = _;
 
 /***/ }),
-/* 17 */
+/* 16 */
 /***/ (function(module, exports) {
 
 module.exports = dateFns;
