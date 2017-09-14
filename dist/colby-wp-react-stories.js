@@ -145,9 +145,6 @@ var Stories = function (_React$Component) {
       if (window.innerWidth > 768) {
         columnCount = 3;
       }
-      if (window.innerWidth > 992) {
-        columnCount = 4;
-      }
 
       return columnCount;
     }
@@ -215,6 +212,7 @@ var Stories = function (_React$Component) {
       var _this4 = this;
 
       return this.state.data[this.state.fetchUrl].posts.filter(function (post, i) {
+        console.log(post.title.rendered, _this4.state.columnCount, i, columnNumber);
         return i % _this4.state.columnCount === columnNumber;
       });
     }
@@ -374,7 +372,13 @@ var Stories = function (_React$Component) {
 
           return _react2.default.createElement(
             'div',
-            { className: _StoriesModule2.default.categoryButtonContainer, key: id },
+            {
+              className: _StoriesModule2.default.categoryButtonContainer,
+              key: id,
+              style: {
+                backgroundColor: meta.background_color || '#002878'
+              }
+            },
             _react2.default.createElement(
               'a',
               {

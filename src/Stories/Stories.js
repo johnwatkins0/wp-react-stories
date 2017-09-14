@@ -28,9 +28,6 @@ class Stories extends React.Component {
     if (window.innerWidth > 768) {
       columnCount = 3;
     }
-    if (window.innerWidth > 992) {
-      columnCount = 4;
-    }
 
     return columnCount;
   }
@@ -85,9 +82,10 @@ class Stories extends React.Component {
   }
 
   getPostsForColumn(columnNumber) {
-    return this.state.data[this.state.fetchUrl].posts.filter(
-      (post, i) => i % this.state.columnCount === columnNumber
-    );
+    return this.state.data[this.state.fetchUrl].posts.filter((post, i) => {
+      console.log(post.title.rendered, this.state.columnCount, i, columnNumber);
+      return i % this.state.columnCount === columnNumber;
+    });
   }
 
   fetchFeaturedMedia(id) {
@@ -233,7 +231,13 @@ class Stories extends React.Component {
 
           const { id, name, meta } = this.state.postCategories[category];
           return (
-            <div className={styles.categoryButtonContainer} key={id}>
+            <div
+              className={styles.categoryButtonContainer}
+              key={id}
+              style={{
+                backgroundColor: meta.background_color || '#002878',
+              }}
+            >
               <a
                 href={meta.site_url}
                 style={{

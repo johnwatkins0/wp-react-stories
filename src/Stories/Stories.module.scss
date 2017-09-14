@@ -50,6 +50,7 @@
 
 .categoriesContainer {
   display: flex;
+  align-items: stretch;
   flex-wrap: wrap;
   justify-content: space-between;
   padding-top: .375rem;
@@ -57,6 +58,8 @@
 }
 
 .categoryButtonContainer {
+  display: flex;
+  align-items: center;
   margin-bottom: .25rem;
   width: 49%;
   transition: opacity .2s, transform .2s;
@@ -73,6 +76,10 @@
 }
 
 .categoryButton {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  justify-content: center;
   margin-bottom: .25rem;
   width: 100%;
   border: none;

@@ -147,6 +147,11 @@
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  -webkit-box-align: stretch;
+      -ms-flex-align: stretch;
+          align-items: stretch;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
           justify-content: space-between;
@@ -154,7 +159,14 @@
   width: 100%; }
 
 .categoryButtonContainer {
-  width: 48%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  margin-bottom: .25rem;
+  width: 49%;
   -webkit-transition: opacity .2s, -webkit-transform .2s;
   transition: opacity .2s, -webkit-transform .2s;
   transition: opacity .2s, transform .2s;
@@ -169,6 +181,17 @@
   max-width: 100%; }
 
 .categoryButton {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
   margin-bottom: .25rem;
   width: 100%;
   border: none;
