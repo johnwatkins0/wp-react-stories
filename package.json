@@ -1,6 +1,6 @@
 {
   "name": "colby-wp-react-stories",
-  "version": "1.0.19",
+  "version": "1.0.20",
   "description": "A React-based, masonry-like display of categorized posts drawn from the WordPress REST API.",
   "main": "src/",
   "scripts": {
