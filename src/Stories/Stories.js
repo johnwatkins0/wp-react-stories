@@ -82,10 +82,7 @@ class Stories extends React.Component {
   }
 
   getPostsForColumn(columnNumber) {
-    return this.state.data[this.state.fetchUrl].posts.filter((post, i) => {
-      console.log(post.title.rendered, this.state.columnCount, i, columnNumber);
-      return i % this.state.columnCount === columnNumber;
-    });
+    return this.state.data[this.state.fetchUrl].posts.filter((post, i) => i % this.state.columnCount === columnNumber);
   }
 
   fetchFeaturedMedia(id) {

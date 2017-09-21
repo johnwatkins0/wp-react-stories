@@ -212,7 +212,6 @@ var Stories = function (_React$Component) {
       var _this4 = this;
 
       return this.state.data[this.state.fetchUrl].posts.filter(function (post, i) {
-        console.log(post.title.rendered, _this4.state.columnCount, i, columnNumber);
         return i % _this4.state.columnCount === columnNumber;
       });
     }
