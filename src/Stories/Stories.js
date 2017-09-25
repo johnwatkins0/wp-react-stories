@@ -4,7 +4,8 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import dateFns from 'date-fns';
-import _ from 'lodash';
+import debounce from 'debounce';
+import { range } from 'range';
 import AnimatedEllipsis from 'react-animated-ellipsis';
 import SearchInput from 'colby-react-search-input';
 
@@ -46,7 +47,7 @@ class Stories extends React.Component {
       fetchUrl: '',
     };
 
-    this.fetchPosts = _.debounce(this.fetchPosts.bind(this), 500);
+    this.fetchPosts = debounce(this.fetchPosts.bind(this), 500);
     this.renderColumn = this.renderColumn.bind(this);
     this.getPostsForColumn = this.getPostsForColumn.bind(this);
     this.renderPost = this.renderPost.bind(this);
@@ -82,7 +83,9 @@ class Stories extends React.Component {
   }
 
   getPostsForColumn(columnNumber) {
-    return this.state.data[this.state.fetchUrl].posts.filter((post, i) => i % this.state.columnCount === columnNumber);
+    return this.state.data[this.state.fetchUrl].posts.filter(
+      (post, i) => i % this.state.columnCount === columnNumber
+    );
   }
 
   fetchFeaturedMedia(id) {
@@ -203,7 +206,7 @@ class Stories extends React.Component {
       );
     }
 
-    return _.range(0, this.state.columnCount).map(this.renderColumn);
+    return range(0, this.state.columnCount).map(this.renderColumn);
   }
 
   renderColumn(columnNumber) {

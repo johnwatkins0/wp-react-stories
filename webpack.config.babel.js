@@ -66,13 +66,16 @@ const main = () => {
     },
     externals: {
       'prop-types': 'PropTypes',
-      'react': 'React',
-      'react-dom': 'ReactDOM',
       'date-fns': 'dateFns',
-      'lodash': '_',
     },
     target: 'web',
     devtool: PROD ? false : 'source-maps',
+    resolve: {
+      alias: {
+        'react': 'preact-compat',
+        'react-dom': 'preact-compat',
+      },
+    },
   };
 };
 

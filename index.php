@@ -30,62 +30,70 @@ function init_stories() {
 
 add_action( 'init', 'init_stories' );
 
-add_action( 'wp_enqueue_scripts', function() {
-	global $post;
+add_action(
+	'wp_enqueue_scripts', function() {
+		global $post;
 
-	if ( has_shortcode( $post->post_content, 'stories' )
+		if ( has_shortcode( $post->post_content, 'stories' )
 			|| has_shortcode( $post->post_content, 'stories' ) ) {
 
-		$package_json = json_decode( file_get_contents( __DIR__ . '/package.json' ) )
-			?: (object) [ 'version' => '1.0.1' ];
-		$min = PROD === true ? '.min' : '';
-		$dist = plugin_dir_url( __FILE__ ) . 'dist';
+			$package_json = json_decode( file_get_contents( __DIR__ . '/package.json' ) )
+			?: (object) [
+				'version' => '1.0.1',
+			];
+			$min = PROD === true ? '.min' : '';
+			$dist = plugin_dir_url( __FILE__ ) . 'dist';
 
-		wp_enqueue_script(
-			$package_json->name, "$dist/{$package_json->name}$min.js",
-			[ 'react', 'react-dom', 'prop-types', 'date-fns', 'lodash' ],
-			$package_json->version,
-			true
-		);
+			wp_enqueue_script(
+				$package_json->name, "$dist/{$package_json->name}$min.js",
+				[ 'prop-types', 'date-fns' ],
+				$package_json->version,
+				true
+			);
 
-		wp_enqueue_style(
-			$package_json->name,
-			"$dist/{$package_json->name}$min.css",
-			[],
-			$package_json->version
-		);
-	}
-}, 10, 1 );
+			wp_enqueue_style(
+				$package_json->name,
+				"$dist/{$package_json->name}$min.css",
+				[],
+				$package_json->version
+			);
+		}
+	}, 10, 1
+);
 
-add_filter( 'rest_prepare_category', function( $response, $taxonomy ) {
-	$response->data['meta']['color'] = get_term_meta( $taxonomy->term_id, 'color', true );
-	$response->data['meta']['background_color'] = get_term_meta( $taxonomy->term_id, 'background-color', true );
-	$response->data['meta']['site_url'] = get_term_meta( $taxonomy->term_id, 'site_url', true );
+add_filter(
+	'rest_prepare_category', function( $response, $taxonomy ) {
+		$response->data['meta']['color'] = get_term_meta( $taxonomy->term_id, 'color', true );
+		$response->data['meta']['background_color'] = get_term_meta( $taxonomy->term_id, 'background-color', true );
+		$response->data['meta']['site_url'] = get_term_meta( $taxonomy->term_id, 'site_url', true );
 
-	return $response;
-}, 10, 2 );
+		return $response;
+	}, 10, 2
+);
 
-add_action( 'wp_footer', function() {
-	global $post;
+add_action(
+	'wp_footer', function() {
+		global $post;
 
-	if ( has_shortcode( $post->post_content, 'stories' )
+		if ( has_shortcode( $post->post_content, 'stories' )
 			|| has_shortcode( $post->post_content, 'stories' ) ) {
-		if ( ! $_GET['category'] ) {
-			return;
+			if ( empty( $_GET['category'] ) ) {
+				return;
+			}
+
+			$category = get_category_by_slug( $_GET['category'] );
+
+			if ( ! $category ) {
+				return;
+			}
+
+			ob_start(); ?>
+	<script>
+	window.COLBY_STORIES_ACTIVE_CATEGORY = '<?php echo $category->term_id; ?>';
+	</script>
+			<?php
+
+			echo ob_get_clean();
 		}
-
-		$category = get_category_by_slug( $_GET['category'] );
-
-		if ( ! $category ) {
-			return;
-		}
-
-		ob_start(); ?>
-<script>
-window.COLBY_STORIES_ACTIVE_CATEGORY = '<?php echo $category->term_id; ?>';
-</script>
-		<?php
-
-		echo ob_get_clean();
 	}
-} );
+);

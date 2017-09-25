@@ -53,13 +53,12 @@
     "colby-scss": "^1.0.8",
     "colby-wp-svg": "^1.1.4",
     "date-fns": "^1.28.5",
-    "lodash": "^4.17.4",
+    "debounce": "^1.0.2",
+    "preact": "^8.2.5",
+    "preact-compat": "^3.17.0",
     "prop-types": "^15.5.10",
-    "react": "^15.6.1",
-    "react-animated-ellipsis": "^0.3.0",
-    "react-collapsible": "^1.5.0",
-    "react-dom": "^15.6.1",
-    "smoothscroll": "^0.3.0"
+    "range": "0.0.3",
+    "react-animated-ellipsis": "^0.3.0"
   },
   "babel": {
     "presets": [
