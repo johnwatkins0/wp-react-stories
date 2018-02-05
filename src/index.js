@@ -1,4 +1,3 @@
-import Stories, { loadStories } from './Stories/Stories';
+import Stories from './Stories';
 
 export default Stories;
-export { loadStories };
