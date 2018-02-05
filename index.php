@@ -16,10 +16,11 @@ function render_stories( $atts ) {
 
 	return "
 		<div
-		  data-stories
-		  class=stories-container
-		  data-endpoint={$atts['endpoint']}
-		  {$atts['per-page']}
+			data-stories
+			data-media-endpoint=\"{$atts['media-endpoint']}\"
+			data-categories-endpoint=\"{$atts['categories-endpoint']}\"
+			data-stories-endpoint=\"{$atts['endpoint']}\"
+			{$atts['per-page']}
 		  >
 		</div>";
 }
@@ -46,7 +47,7 @@ add_action(
 
 			wp_enqueue_script(
 				$package_json->name, "$dist/{$package_json->name}$min.js",
-				[ 'prop-types', 'date-fns' ],
+				[],
 				$package_json->version,
 				true
 			);
