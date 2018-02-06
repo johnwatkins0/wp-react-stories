@@ -26,7 +26,6 @@ const SearchInput = ({ searchTerm, onSearchTermChange }) => (
     <StyledSecretText>Search</StyledSecretText>
     <StyledInput
       placeholder="Search"
-      type="search"
       value={searchTerm}
       onChange={event => {
         onSearchTermChange(event.target.value);

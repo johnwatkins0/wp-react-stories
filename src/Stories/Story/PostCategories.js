@@ -21,7 +21,7 @@ const StyledButton = styled.button`
   text-transform: uppercase;
   cursor: pointer;
   background: rgba(0, 0, 0, 0.075);
-  background: var(--primary, rgba(0, 0, 0, 0.075));
+  background: var(--light-gray, rgba(0, 0, 0, 0.075));
   border: 1px solid rgba(0, 0, 0, 0.15);
   border-radius: 2px;
   transition: 0.2s background-color;
