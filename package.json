@@ -1,8 +1,7 @@
 {
   "name": "wp-react-stories",
-  "version": "0.1.0",
-  "description":
-    "A React-based, masonry-like display of categorized posts drawn from the WordPress REST API.",
+  "version": "0.1.1",
+  "description": "A React-based, masonry-like display of categorized posts drawn from the WordPress REST API.",
   "main": "src/",
   "scripts": {
     "start": "webpack-dev-server",
@@ -15,7 +14,10 @@
     "prepush": "npm run build"
   },
   "author": "John Watkins",
-  "keywords": ["react", "wordpress"],
+  "keywords": [
+    "react",
+    "wordpress"
+  ],
   "license": "ISC",
   "devDependencies": {
     "babel-cli": "^6.24.1",
