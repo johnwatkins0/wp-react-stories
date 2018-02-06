@@ -18,7 +18,7 @@ Note the WordPress parts of this plugin require **PHP 7.1 or higher**.
 
 ### From NPM
 
-If you're not using the shortcode and plan to import this library into your ES6, Javascript, install it with npm:
+If you're not using the shortcode and plan to import this library into your ES6 Javascript, install it with npm:
 
 ```
 npm install wp-react-stories
