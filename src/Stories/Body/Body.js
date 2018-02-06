@@ -18,6 +18,12 @@ const StyledColumn = styled.div`
   max-width: ${({ columnCount }) => 100 / columnCount}%;
 `;
 
+const StyledNoPosts = styled.div`
+  padding-left: 0.75rem;
+  padding-right: 0.75rem;
+  width: 100%;
+`;
+
 class Body extends React.Component {
   setColumnCount = this.setColumnCount.bind(this);
 
@@ -60,6 +66,14 @@ class Body extends React.Component {
       (post, i) => i % this.state.columnCount === columnNumber
     );
 
+  getNoPostsText({ searchTerm, fetching } = this.props) {
+    if (searchTerm.length) {
+      return `No results for <i>${searchTerm}</i>`;
+    }
+
+    return fetching ? '' : 'No posts found.';
+  }
+
   setColumnCount() {
     this.setState({ columnCount: Body.getColumnCount() });
   }
@@ -80,7 +94,7 @@ class Body extends React.Component {
   );
 
   render = (
-    { searchTerm, posts } = this.props,
+    { searchTerm, posts, setCurrentPage, page, fetching } = this.props,
     { columnCount } = this.state
   ) => (
     <StyledColumnContainer
@@ -88,10 +102,10 @@ class Body extends React.Component {
         this.columnContainer = element;
       }}
     >
-      {searchTerm.length && posts.length === 0 ? (
-        <div>
-          No results for <i>{searchTerm}</i>
-        </div>
+      {posts.length === 0 ? (
+        <StyledNoPosts
+          dangerouslySetInnerHTML={{ __html: this.getNoPostsText() }}
+        />
       ) : (
         range(0, columnCount).map(this.renderColumn)
       )}

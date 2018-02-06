@@ -1,7 +1,8 @@
 {
   "name": "wp-react-stories",
   "version": "1.0.22",
-  "description": "A React-based, masonry-like display of categorized posts drawn from the WordPress REST API.",
+  "description":
+    "A React-based, masonry-like display of categorized posts drawn from the WordPress REST API.",
   "main": "src/",
   "scripts": {
     "start": "webpack-dev-server",
@@ -14,13 +15,9 @@
     "prepush": "npm run build"
   },
   "author": "John Watkins",
-  "keywords": [
-    "react",
-    "wordpress"
-  ],
+  "keywords": ["react", "wordpress"],
   "license": "ISC",
   "devDependencies": {
-    "autoprefixer": "^7.1.2",
     "babel-cli": "^6.24.1",
     "babel-eslint": "^8.2.1",
     "babel-loader": "^7.1.1",
@@ -29,7 +26,6 @@
     "babel-preset-react": "^6.24.1",
     "babel-preset-stage-0": "^6.24.1",
     "babel-webpack": "^1.0.0",
-    "css-loader": "^0.28.4",
     "eslint": "^4.14.0",
     "eslint-config-fbjs": "^2.0.1",
     "eslint-plugin-babel": "^4.1.2",
@@ -37,31 +33,25 @@
     "eslint-plugin-jsx-a11y": "^6.0.3",
     "eslint-plugin-react": "^7.5.1",
     "eslint-plugin-relay": "^0.0.20",
-    "extract-text-webpack-plugin": "^2.1.0",
     "html-webpack-plugin": "^2.30.1",
     "node-autodeploy-wp": "^1.0.20",
-    "node-sass": "^4.5.2",
-    "postcss-loader": "^2.0.5",
-    "sass-loader": "^6.0.3",
     "style-loader": "^0.17.0",
+    "stylelint": "^8.4.0",
+    "stylelint-config-standard": "^18.0.0",
+    "stylelint-order": "^0.8.0",
+    "stylelint-processor-styled-components": "^1.2.2",
+    "webpack-dev-server": "^2.11.1",
     "webpack": "^2.5.0",
     "webpack-bundle-analyzer": "^2.9.0"
   },
   "dependencies": {
-    "colby-react-search-input": "^1.0.6",
     "date-fns": "^1.28.5",
     "debounce": "^1.0.2",
     "prop-types": "^15.5.10",
     "range": "0.0.3",
     "react": "^16.2.0",
-    "react-animated-ellipsis": "^0.3.0",
     "react-dom": "^16.2.0",
     "smoothscroll-polyfill": "^0.4.0",
-    "styled-components": "^3.1.6",
-    "stylelint": "^8.4.0",
-    "stylelint-config-standard": "^18.0.0",
-    "stylelint-order": "^0.8.0",
-    "stylelint-processor-styled-components": "^1.2.2",
-    "webpack-dev-server": "^2.11.1"
+    "styled-components": "^3.1.6"
   }
 }

@@ -11,13 +11,18 @@ const StyledInput = styled.input`
   font-size: 94.4%;
 `;
 
+const StyledLabel = styled.label`
+  width: 100%;
+  display: block;
+`;
+
 const StyledSecretText = styled.span`
   position: absolute;
   left: -1000%;
 `;
 
 const SearchInput = ({ searchTerm, onSearchTermChange }) => (
-  <label>
+  <StyledLabel>
     <StyledSecretText>Search</StyledSecretText>
     <StyledInput
       placeholder="Search"
@@ -27,7 +32,7 @@ const SearchInput = ({ searchTerm, onSearchTermChange }) => (
         onSearchTermChange(event.target.value);
       }}
     />
-  </label>
+  </StyledLabel>
 );
 
 SearchInput.propTypes = {

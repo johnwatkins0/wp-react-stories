@@ -9,10 +9,10 @@ const StyledContainer = styled.div`
 `;
 
 const StyledButton = styled.button`
-  background: #214280;
-  background: var(--primary, #214280);
+  background: rgba(0, 0, 0, 0.075);
+  background: var(--primary, rgba(0, 0, 0, 0.075));
   border-radius: 2px;
-  font-size: 79.4%;
+  font-size: 66.6%;
   margin-bottom: 0.5rem;
   margin-right: 0.25rem;
   margin-left: 0.25rem;
@@ -21,12 +21,14 @@ const StyledButton = styled.button`
   padding: 0.375rem;
   transition: 0.2s background-color;
   cursor: pointer;
-  color: white;
-  color: var(--color, white);
+  color: black;
+  border: 1px solid rgba(0, 0, 0, 0.15);
+  color: var(--color, black);
+  flex: 0 0 46%;
 
   &:hover {
-    background: #1e3b73;
-    background: var(--background-hover-color, #1e3b73);
+    background: rgba(0, 0, 0, 0.1);
+    background: var(--background-hover-color, rgba(0, 0, 0, 0.1));
   }
 `;
 

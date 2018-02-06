@@ -1,6 +1,7 @@
 {
   "name": "colbycomms/wp-react-stories",
-  "description": "A masonry-like display of posts from a WordPress REST endpoint.",
+  "description":
+    "A masonry-like display of posts from a WordPress REST endpoint.",
   "type": "library",
   "require": {
     "php": "^7.1"
@@ -21,5 +22,9 @@
       "ColbyComms\\Stories\\": "stories/"
     },
     "files": ["stories/index.php"]
+  },
+  "scripts": {
+    "fix": "phpcbf --extensions=php",
+    "lint": "phpcs --extensions=php -s"
   }
 }

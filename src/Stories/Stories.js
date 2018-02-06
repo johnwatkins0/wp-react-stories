@@ -17,6 +17,35 @@ const StyledContainer = styled.div`
   width: 100%;
 `;
 
+const StyledMoreButtonContainer = styled.div`
+  width: 100%;
+  text-align: center;
+  padding-top: 1.5rem;
+`;
+
+const StyledMoreButton = styled.button`
+  background: #214280;
+  background: var(--primary, #214280);
+  border: none;
+  border-radius: 2px;
+  font-size: 79.4%;
+  margin-bottom: 0.5rem;
+  margin-right: 0.25rem;
+  margin-left: 0.25rem;
+  line-height: 1.2;
+  text-transform: uppercase;
+  padding: 0.5rem 1rem;
+  transition: 0.2s background-color;
+  cursor: pointer;
+  color: white;
+  color: var(--color, white);
+
+  &:hover {
+    background: #1e3b73;
+    background: var(--background-hover-color, #1e3b73);
+  }
+`;
+
 class Stories extends React.Component {
   static propTypes = {
     endpoint: PropTypes.string.isRequired,
@@ -34,7 +63,7 @@ class Stories extends React.Component {
 
     this.state = {
       activeCategory: '0',
-      fetching: false,
+      fetching: true,
       categories: [],
       posts: [],
       searchTerm: '',
@@ -50,17 +79,27 @@ class Stories extends React.Component {
   }
 
   async componentDidUpdate(prevProps, prevState) {
+    // Category has switched.
     if (prevState.activeCategory !== this.state.activeCategory) {
-      this.fetchPosts();
+      if (this.state.currentPage !== 1) {
+        await this.setCurrentPage(1);
+      } else {
+        this.fetchPosts();
+      }
       return;
     }
 
+    // Search term has become empty.
     if (prevState.searchTerm !== '' && this.state.searchTerm === '') {
-      this.setCurrentPage(1);
-      this.fetchPosts();
+      if (this.state.currentPage !== 1) {
+        await this.setCurrentPage(1);
+      } else {
+        this.fetchPosts();
+      }
       return;
     }
 
+    // There is a new search term.
     if (prevState.searchTerm !== this.state.searchTerm) {
       if (this.state.searchTerm.length > 2) {
         this.fetchPosts();
@@ -69,6 +108,7 @@ class Stories extends React.Component {
       return;
     }
 
+    // A page has been added.
     if (prevState.currentPage !== this.state.currentPage) {
       this.fetchPosts();
     }
@@ -89,7 +129,9 @@ class Stories extends React.Component {
       url = `${url}&search=${searchTerm}`;
     }
 
-    return `${url}&paged=${currentPage}`;
+    url = `${url}&page=${currentPage}`;
+
+    return url;
   }
 
   setCurrentPage = currentPage =>
@@ -136,13 +178,22 @@ class Stories extends React.Component {
     this.setState({
       posts:
         this.state.currentPage > 1 ? this.state.posts.concat(posts) : posts,
+      canGetMore: totalPages > this.state.currentPage,
       fetching: false,
     });
   }
 
   render = (
     { categoriesEndpoint, mediaEndpoint } = this.props,
-    { categories, searchTerm, fetching, activeCategory, posts } = this.state
+    {
+      categories,
+      searchTerm,
+      fetching,
+      activeCategory,
+      posts,
+      canGetMore,
+      currentPage,
+    } = this.state
   ) => (
     <StyledContainer>
       <Header
@@ -163,10 +214,21 @@ class Stories extends React.Component {
         setActiveCategory={this.setActiveCategory}
         searchTerm={searchTerm}
         posts={posts}
+        fetching={fetching}
         categories={categories}
         mediaEndpoint={mediaEndpoint}
         scrollToTop={this.scrollToTop}
+        canGetMore={canGetMore}
       />
+      {canGetMore ? (
+        <StyledMoreButtonContainer>
+          <StyledMoreButton
+            onClick={() => this.setCurrentPage(currentPage + 1)}
+          >
+            More
+          </StyledMoreButton>
+        </StyledMoreButtonContainer>
+      ) : null}
     </StyledContainer>
   );
 
@@ -175,6 +237,7 @@ class Stories extends React.Component {
   setSearchTerm = this.setSearchTerm.bind(this);
   fetchPosts = debounce(this.fetchPosts.bind(this), 500);
   scrollToTop = this.scrollToTop.bind(this);
+  setCurrentPage = this.setCurrentPage.bind(this);
 }
 
 export default Stories;

@@ -16,7 +16,7 @@ const main = () => {
     entry,
     output: {
       filename,
-      path: path.resolve(__dirname, 'dist'),
+      path: path.resolve(__dirname, PROD ? 'dist' : 'demo'),
     },
     plugins: [
       new HtmlWebpackPlugin({

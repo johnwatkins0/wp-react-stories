@@ -18,11 +18,15 @@ const StyledStory = styled.article`
   background-clip: border-box;
   border: 1px solid rgba(0, 0, 0, 0.125);
   border-radius: 2px;
+
+  time {
+    font-size: 89.1%;
+  }
 `;
 
 const StyledStoryBody = styled.div`
   flex: 1 1 auto;
-  padding: 1.25rem;
+  padding: 0.75rem 1.25rem;
 `;
 
 const StyledStoryTitle = styled.h1`
