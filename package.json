@@ -1,6 +1,6 @@
 {
   "name": "wp-react-stories",
-  "version": "1.0.22",
+  "version": "0.1.0",
   "description":
     "A React-based, masonry-like display of categorized posts drawn from the WordPress REST API.",
   "main": "src/",
