@@ -30,8 +30,8 @@ const StyledStoryBody = styled.div`
 `;
 
 const StyledStoryTitle = styled.h1`
-  line-height: 1.333;
   font-size: 119%;
+  line-height: 1.333;
 `;
 
 import { fetchMedia } from '../utils/fetchMedia';

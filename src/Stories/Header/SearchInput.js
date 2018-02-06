@@ -3,17 +3,17 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
 const StyledInput = styled.input`
-  padding: 0.375rem;
   width: 100%;
+  padding: 0.375rem;
+  font-size: 94.4%;
+  background: #fff;
   border: 1px solid rgba(53, 53, 53, 0.3);
   border-radius: 2px;
-  background: #fff;
-  font-size: 94.4%;
 `;
 
 const StyledLabel = styled.label`
-  width: 100%;
   display: block;
+  width: 100%;
 `;
 
 const StyledSecretText = styled.span`

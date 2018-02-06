@@ -3,12 +3,12 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
 const StyledCategoryPicker = styled.div`
-  padding-right: 0;
-  font-size: 79.4%;
-  text-transform: uppercase;
   display: flex;
   align-items: center;
   justify-content: flex-end;
+  padding-right: 0;
+  font-size: 79.4%;
+  text-transform: uppercase;
 
   select {
     font-size: 1rem;

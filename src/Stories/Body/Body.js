@@ -7,21 +7,21 @@ import Story from '../Story';
 
 const StyledColumnContainer = styled.div`
   display: flex;
-  margin-left: -0.75rem;
   margin-right: -0.75rem;
+  margin-left: -0.75rem;
 `;
 
 const StyledColumn = styled.div`
-  padding-left: 0.75rem;
-  padding-right: 0.75rem;
   flex: 1 1 ${({ columnCount }) => 100 / columnCount}%;
   max-width: ${({ columnCount }) => 100 / columnCount}%;
+  padding-right: 0.75rem;
+  padding-left: 0.75rem;
 `;
 
 const StyledNoPosts = styled.div`
-  padding-left: 0.75rem;
-  padding-right: 0.75rem;
   width: 100%;
+  padding-right: 0.75rem;
+  padding-left: 0.75rem;
 `;
 
 class Body extends React.Component {

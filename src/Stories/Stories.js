@@ -2,7 +2,6 @@
 
 import PropTypes from 'prop-types';
 import React from 'react';
-import ReactDOM from 'react-dom';
 import styled from 'styled-components';
 import debounce from 'debounce';
 import smoothScroll from 'smoothscroll-polyfill';
@@ -19,26 +18,26 @@ const StyledContainer = styled.div`
 
 const StyledMoreButtonContainer = styled.div`
   width: 100%;
-  text-align: center;
   padding-top: 1.5rem;
+  text-align: center;
 `;
 
 const StyledMoreButton = styled.button`
+  padding: 0.5rem 1rem;
+  margin-right: 0.25rem;
+  margin-bottom: 0.5rem;
+  margin-left: 0.25rem;
+  font-size: 79.4%;
+  line-height: 1.2;
+  color: white;
+  color: var(--color, white);
+  text-transform: uppercase;
+  cursor: pointer;
   background: #214280;
   background: var(--primary, #214280);
   border: none;
   border-radius: 2px;
-  font-size: 79.4%;
-  margin-bottom: 0.5rem;
-  margin-right: 0.25rem;
-  margin-left: 0.25rem;
-  line-height: 1.2;
-  text-transform: uppercase;
-  padding: 0.5rem 1rem;
   transition: 0.2s background-color;
-  cursor: pointer;
-  color: white;
-  color: var(--color, white);
 
   &:hover {
     background: #1e3b73;

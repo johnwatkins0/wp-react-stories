@@ -1,3 +1,3 @@
-import Stories from "./Stories";
+import Stories from './Stories';
 
 export default Stories;

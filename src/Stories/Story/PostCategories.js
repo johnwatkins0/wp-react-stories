@@ -9,22 +9,22 @@ const StyledContainer = styled.div`
 `;
 
 const StyledButton = styled.button`
+  flex: 0 0 46%;
+  padding: 0.375rem;
+  margin-right: 0.25rem;
+  margin-bottom: 0.5rem;
+  margin-left: 0.25rem;
+  font-size: 66.6%;
+  line-height: 1.2;
+  color: black;
+  color: var(--color, black);
+  text-transform: uppercase;
+  cursor: pointer;
   background: rgba(0, 0, 0, 0.075);
   background: var(--primary, rgba(0, 0, 0, 0.075));
-  border-radius: 2px;
-  font-size: 66.6%;
-  margin-bottom: 0.5rem;
-  margin-right: 0.25rem;
-  margin-left: 0.25rem;
-  line-height: 1.2;
-  text-transform: uppercase;
-  padding: 0.375rem;
-  transition: 0.2s background-color;
-  cursor: pointer;
-  color: black;
   border: 1px solid rgba(0, 0, 0, 0.15);
-  color: var(--color, black);
-  flex: 0 0 46%;
+  border-radius: 2px;
+  transition: 0.2s background-color;
 
   &:hover {
     background: rgba(0, 0, 0, 0.1);
@@ -37,7 +37,7 @@ export const PostCategories = ({
   post,
   setActiveCategory,
   scrollToTop,
-} = props) => (
+}) => (
   <StyledContainer>
     {categories
       .filter(category => post.categories.indexOf(category.id) !== -1)
