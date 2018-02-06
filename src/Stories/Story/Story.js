@@ -5,6 +5,7 @@ import dateFns from 'date-fns';
 
 import { PostCategories } from './PostCategories';
 import { FeaturedImage } from './FeaturedImage';
+import { fetchMedia } from '../utils/fetchMedia';
 
 const StyledStory = styled.article`
   position: relative;
@@ -33,8 +34,6 @@ const StyledStoryTitle = styled.h1`
   font-size: 119%;
   line-height: 1.333;
 `;
-
-import { fetchMedia } from '../utils/fetchMedia';
 
 class Story extends React.Component {
   static propTypes = {

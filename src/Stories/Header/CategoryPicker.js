@@ -15,9 +15,11 @@ const StyledCategoryPicker = styled.div`
   }
 `;
 
-export const CategoryPicker = (
-  { activeCategory, categories, setActiveCategory } = this.props
-) =>
+export const CategoryPicker = ({
+  activeCategory,
+  categories,
+  setActiveCategory,
+}) =>
   categories.length ? (
     <StyledCategoryPicker>
       <label>

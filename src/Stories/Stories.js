@@ -66,7 +66,6 @@ class Stories extends React.Component {
       categories: [],
       posts: [],
       searchTerm: '',
-      featuredImages: {},
       currentPage: 1,
       canGetMore: false,
     };
