@@ -2,7 +2,7 @@
 
 A masonry-like display of posts from the WordPress REST API. Includes search and a category select input.
 
-[Demo.](https://colbycommunications.github.io/wp-react-stories/demo/)
+[Demo.](https://johnwatkins0.github.io/wp-react-stories/demo/)
 
 ## Install
 
