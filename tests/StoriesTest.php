@@ -59,15 +59,6 @@ class StoriesTest extends TestCase {
 		$this->assertArrayHasKey( Stories::TEXT_DOMAIN, $wp_scripts->registered );
 	}
 
-	public function test_get_dist_directory() {
-		$this->assertEquals(
-			Stories::get_dist_directory(),
-			isset( $_ENV['TRAVIS_BUILD_DIR'] )
-				? $_ENV['TRAVIS_BUILD_DIR'] . '/wp-react-stories/dist/'
-				: dirname( __DIR__, 2 ) . '/' . Stories::TEXT_DOMAIN . '/dist/'
-		);
-	}
-
 	public function test_get_dist_directory_in_theme() {
 		$this->assertEquals(
 			Stories::get_dist_directory( true ),
