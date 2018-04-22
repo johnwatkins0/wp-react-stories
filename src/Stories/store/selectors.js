@@ -6,7 +6,7 @@ import get from 'lodash.get';
  * @param {Object} state An app state.
  * @return {number} The current page.
  */
-export const getCurrentPage = state => get(state, 'currentPage', 0);
+export const getCurrentPage = state => get(state, 'currentPage', 1);
 
 /**
  * Gets the current posts from the app state.
