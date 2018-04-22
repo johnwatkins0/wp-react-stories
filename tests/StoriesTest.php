@@ -1,7 +1,7 @@
 <?php
 
 use PHPUnit\Framework\TestCase;
-use ColbyComms\Stories\Stories;
+use johnwatkins0\Stories\Stories;
 
 class StoriesTest extends TestCase {
     public function test_init() {
@@ -62,7 +62,7 @@ class StoriesTest extends TestCase {
 	public function test_get_dist_directory_in_theme() {
 		$this->assertEquals(
 			Stories::get_dist_directory( true ),
-			'my-template-directory/vendor/colbycomms/wp-react-stories/dist/'
+			'my-template-directory/vendor/johnwatkins0/wp-react-stories/dist/'
 		);
 	}
 }
