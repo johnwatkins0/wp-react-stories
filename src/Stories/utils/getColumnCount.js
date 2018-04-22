@@ -5,6 +5,10 @@
  * @return {number} The number of columns the app body should have.
  */
 export const getColumnCount = (element) => {
+  if (!element || !element.innerWidth) {
+    return 3;
+  }
+
   if ((element.innerWidth || element.clientWidth) > 768) {
     return 3;
   }
