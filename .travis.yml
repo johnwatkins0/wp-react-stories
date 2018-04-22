@@ -13,3 +13,5 @@ install:
 
 test:
   yarn test
+
+notifications: never
