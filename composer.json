@@ -8,7 +8,9 @@
   },
   "require-dev": {
     "squizlabs/php_codesniffer": "^3.2",
-    "wp-coding-standards/wpcs": "^0.14.0"
+    "wp-coding-standards/wpcs": "^0.14.0",
+    "phpunit/phpunit": "^7.1",
+    "johnpbloch/wordpress-core": "^4.9"
   },
   "authors": [
     {
@@ -20,11 +22,11 @@
   "autoload": {
     "psr-4": {
       "ColbyComms\\Stories\\": "stories/"
-    },
-    "files": ["stories/index.php"]
+    }
   },
   "scripts": {
     "fix": "phpcbf --extensions=php",
-    "lint": "phpcs --extensions=php -s"
+    "lint": "phpcs --extensions=php -s",
+    "test": "phpunit"
   }
 }

@@ -8,12 +8,12 @@
     "build": "webpack && webpack -p",
     "lint": "eslint src/",
     "stylelint": "stylelint src/",
-    "prepare": "npm run build",
-    "test": "npm run lint && npm run stylelint && jest"
+    "prepare": "yarn run build",
+    "test": "composer lint && composer test && npm run lint && npm run stylelint && jest"
   },
   "husky": {
     "hooks": {
-      "pre-commit": "composer lint && npm test"
+      "pre-commit": "yarn test"
     }
   },
   "author": "John Watkins",
@@ -51,12 +51,10 @@
     "stylelint-order": "^0.8.0",
     "stylelint-processor-styled-components": "^1.2.2",
     "webpack": "^2.5.0",
-    "webpack-bundle-analyzer": "^2.9.0",
     "webpack-dev-server": "^2.11.1"
   },
   "dependencies": {
     "date-fns": "^1.28.5",
-    "debounce": "^1.0.2",
     "lodash.get": "^4.4.2",
     "lodash.set": "^4.3.2",
     "prop-types": "^15.5.10",

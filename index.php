@@ -8,5 +8,6 @@
  */
 
 if ( file_exists( __DIR__ . '/vendor/autoload.php' ) ) {
-	require 'vendor/autoload.php';
+	require __DIR__ . '/vendor/autoload.php';
+	ColbyComms\Stories\Stories::init();
 }

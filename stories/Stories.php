@@ -63,7 +63,7 @@ class Stories {
 	/**
 	 * Add hooks.
 	 */
-	public function __construct() {
+	public static function init() {
 		add_action( 'init', [ __CLASS__, 'add_shortcode' ] );
 		add_action( 'wp_enqueue_scripts', [ __CLASS__, 'enqueue_script' ] );
 	}
@@ -94,14 +94,14 @@ class Stories {
 			?? get_bloginfo( 'url' ) . '/wp-json/wp/v2/media/';
 
 		$atts['per-page'] = $atts['per-page'] ?? '12';
-		$per_page = " data-per-page={$atts['per-page']}";
+		$per_page = "data-per-page=\"{$atts['per-page']}\"";
 
 		return "
 				<div data-stories
 					data-media-endpoint=\"{$atts['media-endpoint']}\"
 					data-categories-endpoint=\"{$atts['categories-endpoint']}\"
 					data-stories-endpoint=\"{$atts['endpoint']}\"
-					{$atts['per-page']}
+					$per_page
 				></div>";
 	}
 
@@ -141,7 +141,7 @@ class Stories {
 	 */
 	public static function get_dist_directory() : string {
 		if ( file_exists( dirname( __DIR__, 3 ) . '/plugins' ) ) {
-			return plugin_dir_url( dirname( __DIR__ ) . '/index.php' ) . '/dist/';
+			return plugin_dir_url( dirname( __DIR__ ) . '/index.php' ) . 'dist/';
 		}
 
 		return get_template_directory_uri() . '/vendor/' . self::VENDOR . '/' . self::TEXT_DOMAIN . '/dist/';

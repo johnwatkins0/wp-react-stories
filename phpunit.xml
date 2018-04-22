@@ -1,0 +1,15 @@
+<phpunit bootstrap="tests/bootstrap.php">
+  <testsuites>
+    <testsuite name="wp-snapshot">
+      <directory>tests</directory>
+    </testsuite>
+  </testsuites>
+  <filter>
+    <whitelist processUncoveredFilesFromWhitelist="true">
+      <directory suffix=".php">stories</directory>
+    </whitelist>
+  </filter>
+  <logging>
+    <log type="coverage-text" target="php://stdout" showOnlySummary="false" showUncoveredFiles="true" />
+  </logging>
+</phpunit>
