@@ -3,11 +3,16 @@ language: php
 php:
   - 7.1
 
+env: 
+  - TRAVISCI=true
+
 before_install:
   - nvm install stable
   - npm -g install yarn
 
 install:
+  - mkdir plugins plugins/wp-react-stories
+  - cd plugins
   - composer install
   - yarn
 

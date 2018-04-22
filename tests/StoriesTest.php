@@ -62,11 +62,13 @@ class StoriesTest extends TestCase {
 	public function test_get_dist_directory() {
 		$this->assertEquals(
 			Stories::get_dist_directory(),
-			dirname( __DIR__, 2 ) . '/' . Stories::TEXT_DOMAIN . '/dist/'
+			$_ENV['TRAVISCI']
+				? '/home/travis/build/johnwatkins0/wp-react-stories/dist/'
+				: dirname( __DIR__, 2 ) . '/' . Stories::TEXT_DOMAIN . '/dist/'
 		);
 	}
 
-	public function test_get_dist_directory_intheme() {
+	public function test_get_dist_directory_in_theme() {
 		$this->assertEquals(
 			Stories::get_dist_directory( true ),
 			'my-template-directory/vendor/colbycomms/wp-react-stories/dist/'
