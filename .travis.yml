@@ -11,8 +11,6 @@ before_install:
   - npm -g install yarn
 
 install:
-  - mkdir plugins plugins/wp-react-stories
-  - cd plugins
   - composer install
   - yarn
 
