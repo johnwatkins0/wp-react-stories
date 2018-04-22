@@ -62,8 +62,8 @@ class StoriesTest extends TestCase {
 	public function test_get_dist_directory() {
 		$this->assertEquals(
 			Stories::get_dist_directory(),
-			$_ENV['TRAVISCI']
-				? '/home/travis/build/johnwatkins0/wp-react-stories/dist/'
+			isset( $_ENV['TRAVIS_BUILD_DIR'] )
+				? $_ENV['TRAVIS_BUILD_DIR'] . '/wp-react-stories/dist/'
 				: dirname( __DIR__, 2 ) . '/' . Stories::TEXT_DOMAIN . '/dist/'
 		);
 	}

@@ -3,9 +3,6 @@ language: php
 php:
   - 7.1
 
-env: 
-  - TRAVISCI=true
-
 before_install:
   - nvm install stable
   - npm -g install yarn
