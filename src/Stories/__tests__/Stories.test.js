@@ -67,4 +67,40 @@ describe('Stories', () => {
     wrapper.instance().setSearchTerm('hel');
     expect(wrapper.state('searchTerm')).toBe('hel');
   });
+
+  it('fetches when a new page is added', () => {
+    const wrapper = shallow(getMyComponent());
+    wrapper.setState({ currentPage: 2 });
+    expect(wrapper.state('fetching')).toBe(true);
+  });
+
+  it('handles a search term correctly', () => {
+    const wrapper = shallow(getMyComponent());
+    wrapper.setState({ searchTerm: 'he' });
+    expect(wrapper.state('fetching')).toBe(false);
+    wrapper.setState({ searchTerm: 'hel' });
+    expect(wrapper.state('fetching')).toBe(true);
+  });
+
+  it('resets the current page when the search term is cleared', () => {
+    const wrapper = shallow(getMyComponent());
+    wrapper.setState({ searchTerm: 'hello' });
+    wrapper.setState({ currentPage: 2 });
+    expect(wrapper.state('currentPage')).toBe(2);
+    wrapper.setState({ searchTerm: '' });
+    expect(wrapper.state('currentPage')).toBe(1);
+    wrapper.setState({ searchTerm: 'hell' });
+    wrapper.setState({ searchTerm: '' });
+    expect(wrapper.state('currentPage')).toBe(1);
+  });
+
+  it('resets the current page when the category changes', () => {
+    const wrapper = shallow(getMyComponent());
+    wrapper.setState({ currentPage: 2 });
+    expect(wrapper.state('currentPage')).toBe(2);
+    wrapper.setState({ activeCategory: 66 });
+    expect(wrapper.state('currentPage')).toBe(1);
+    wrapper.setState({ activeCategory: 55 });
+    expect(wrapper.state('currentPage')).toBe(1);
+  });
 });

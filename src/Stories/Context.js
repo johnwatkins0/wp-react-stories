@@ -10,7 +10,7 @@ export const INITIAL_STATE_CONTEXT = {
   searchTerm: '',
   currentPage: 1,
   canGetMore: false,
-  columnCount: getColumnCount(document.defaultView),
+  columnCount: getColumnCount(),
 };
 
 export const StateContext = createContext(INITIAL_STATE_CONTEXT);

@@ -7,6 +7,8 @@ export const posts = [
     excerpt: {
       rendered: 'Hello, this is the excerpt.',
     },
+    featured_media: 0,
+    categories: [558],
   },
   {
     id: 12,
@@ -17,6 +19,7 @@ export const posts = [
       rendered: 'Hello, this is a cool post',
     },
     featured_media: 64,
+    categories: [984],
   },
 ];
 
@@ -46,4 +49,13 @@ export const state = {
 export const media = {
   id: 64,
   title: 'My Media Object',
+  media_details: {
+    sizes: {
+      large: {
+        source_url: 'http://my-image',
+        height: 100,
+        width: 200,
+      },
+    },
+  },
 };

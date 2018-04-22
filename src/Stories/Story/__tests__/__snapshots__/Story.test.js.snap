@@ -1,0 +1,122 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Story renders 1`] = `
+<article
+  className="sc-bxivhb bAWjzE"
+>
+  <div
+    className="sc-ifAKCX deqhXU"
+  >
+    <h1
+      className="sc-EHOje wDHIL"
+    >
+      <a
+        dangerouslySetInnerHTML={
+          Object {
+            "__html": "Hello",
+          }
+        }
+        href={undefined}
+      />
+    </h1>
+    <time
+      dateTime={undefined}
+    >
+      almost NaN years ago
+    </time>
+    <p
+      dangerouslySetInnerHTML={
+        Object {
+          "__html": "Hello, this is the excerpt.",
+        }
+      }
+    />
+  </div>
+  <div
+    className="sc-bdVaJa fEpVJS"
+  />
+</article>
+`;
+
+exports[`Story renders with a featured image 1`] = `
+<article
+  className="sc-bxivhb bAWjzE"
+>
+  <img
+    alt="Hello"
+    className="sc-htpNat kmMOsy"
+    height={100}
+    src="http://my-image"
+    width={200}
+  />
+  <div
+    className="sc-ifAKCX deqhXU"
+  >
+    <h1
+      className="sc-EHOje wDHIL"
+    >
+      <a
+        dangerouslySetInnerHTML={
+          Object {
+            "__html": "Hello",
+          }
+        }
+        href={undefined}
+      />
+    </h1>
+    <time
+      dateTime={undefined}
+    >
+      almost NaN years ago
+    </time>
+    <p
+      dangerouslySetInnerHTML={
+        Object {
+          "__html": "Hello, this is the excerpt.",
+        }
+      }
+    />
+  </div>
+  <div
+    className="sc-bdVaJa fEpVJS"
+  />
+</article>
+`;
+
+exports[`Story renders with featured_media property 1`] = `
+<article
+  className="sc-bxivhb bAWjzE"
+>
+  <div
+    className="sc-ifAKCX deqhXU"
+  >
+    <h1
+      className="sc-EHOje wDHIL"
+    >
+      <a
+        dangerouslySetInnerHTML={
+          Object {
+            "__html": "My cool post",
+          }
+        }
+        href={undefined}
+      />
+    </h1>
+    <time
+      dateTime={undefined}
+    >
+      almost NaN years ago
+    </time>
+    <p
+      dangerouslySetInnerHTML={
+        Object {
+          "__html": "Hello, this is a cool post",
+        }
+      }
+    />
+  </div>
+  <div
+    className="sc-bdVaJa fEpVJS"
+  />
+</article>
+`;

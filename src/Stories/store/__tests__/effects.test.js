@@ -1,6 +1,6 @@
 import set from 'lodash.set';
 
-import effects from '../effects';
+import effects, { MEDIA_CACHE, POSTS_CACHE } from '../effects';
 import { receivePosts, receiveCategories, receivePostMedia, updatePosts } from '../actions';
 
 import { posts, state, categories, media } from '../../__tests__/testData';
@@ -43,6 +43,25 @@ describe('effects', () => {
         true,
       ));
     });
+
+    it('fetches posts from cache', async () => {
+      const fetchMock = getFetchMock(posts);
+      set(global, 'fetch', fetchMock);
+
+      const url = 'http://my-endpoint';
+      POSTS_CACHE[url] = { posts, totalPages: 999, canGetMore: true };
+
+      effects.FETCH_POSTS({ url }, { dispatch, getState: () => ({ ...state }) });
+
+      const response = await fetchMock();
+      const receivedData = await response.json();
+
+      expect(dispatch).toHaveBeenCalledWith(receivePosts(
+        receivedData,
+        999,
+        true,
+      ));
+    });
   });
 
   describe('FETCH_CATEGORIES', () => {
@@ -65,6 +84,21 @@ describe('effects', () => {
       set(global, 'fetch', fetchMock);
 
       effects.FETCH_POST_MEDIA({ url: 'http://my-media-endpoint' }, { dispatch });
+
+      const response = await fetchMock();
+      const receivedData = await response.json();
+
+      expect(dispatch).toHaveBeenCalledWith(receivePostMedia(receivedData));
+    });
+
+    it('fetches media from cache', async () => {
+      const fetchMock = getFetchMock(media);
+      set(global, 'fetch', fetchMock);
+
+      const url = 'http://my-media-endpoint';
+      MEDIA_CACHE[url] = media;
+
+      effects.FETCH_POST_MEDIA({ url }, { dispatch });
 
       const response = await fetchMock();
       const receivedData = await response.json();

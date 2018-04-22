@@ -1,0 +1,23 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`FeaturedImage handles an image object with a large photo 1`] = `
+<img
+  alt="My alt text"
+  className="sc-bdVaJa ctpUMM"
+  height={100}
+  src="http://my-image"
+  width={200}
+/>
+`;
+
+exports[`FeaturedImage handles an image object with a medium photo 1`] = `
+<img
+  alt="My alt text"
+  className="sc-bdVaJa ctpUMM"
+  height={100}
+  src="http://my-image"
+  width={200}
+/>
+`;
+
+exports[`FeaturedImage handles an invalid image object 1`] = `null`;

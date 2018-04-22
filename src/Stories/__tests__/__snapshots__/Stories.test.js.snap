@@ -11,15 +11,15 @@ exports[`Stories renders 1`] = `
       className="sc-EHOje iJDDec"
     >
       <label
-        className="sc-bwzfXH bkOaau"
+        className="sc-htpNat jCyuZn"
       >
         <span
-          className="sc-htpNat yCQDS"
+          className="sc-bxivhb eJJiJw"
         >
           Search
         </span>
         <input
-          className="sc-bdVaJa kkiwNK"
+          className="sc-bwzfXH jAzygE"
           onChange={[Function]}
           placeholder="Search"
           value=""

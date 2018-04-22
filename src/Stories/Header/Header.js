@@ -1,8 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import SearchInput from './SearchInput';
-import CategoryPicker from './CategoryPicker';
+import Search from './SearchInput';
+import Picker from './CategoryPicker';
 import { SearchIcon } from './SearchIcon';
 
 const StyledHeader = styled.div`
@@ -38,12 +38,14 @@ const StyledSearchInputContainer = styled.div`
   }
 `;
 
-export const Header = () => (
+const Header = () => (
   <StyledHeader>
     <StyledSearchInputContainer>
-      <SearchInput />
+      <Search />
       <SearchIcon />
     </StyledSearchInputContainer>
-    <CategoryPicker />
+    <Picker />
   </StyledHeader>
 );
+
+export default Header;

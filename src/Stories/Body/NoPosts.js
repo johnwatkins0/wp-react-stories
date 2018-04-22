@@ -10,7 +10,7 @@ const StyledNoPosts = styled.div`
   padding-left: 0.75rem;
 `;
 
-const getNoPostsText = ({ searchTerm, fetching }) => {
+export const getNoPostsText = ({ searchTerm, fetching }) => {
   if (searchTerm.length) {
     return `No results for <i>${searchTerm}</i>`;
   }
@@ -18,7 +18,7 @@ const getNoPostsText = ({ searchTerm, fetching }) => {
   return fetching ? '' : 'No posts found.';
 };
 
-const NoPosts = ({ searchTerm, fetching }) => (
+export const NoPosts = ({ searchTerm, fetching }) => (
   <StyledNoPosts
     dangerouslySetInnerHTML={{
           __html: getNoPostsText({ searchTerm, fetching }),

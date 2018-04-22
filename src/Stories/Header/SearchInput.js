@@ -23,7 +23,7 @@ const StyledSecretText = styled.span`
   left: -1000%;
 `;
 
-const SearchInput = ({ setSearchTerm, searchTerm }) => (
+export const SearchInput = ({ setSearchTerm, searchTerm }) => (
   <StyledLabel>
     <StyledSecretText>Search</StyledSecretText>
     <StyledInput

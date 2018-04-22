@@ -1,0 +1,23 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`NoPosts renders no posts at all 1`] = `
+<div
+  className="sc-bdVaJa kdnzwt"
+  dangerouslySetInnerHTML={
+    Object {
+      "__html": "No posts found.",
+    }
+  }
+/>
+`;
+
+exports[`NoPosts renders no results for search 1`] = `
+<div
+  className="sc-bdVaJa kdnzwt"
+  dangerouslySetInnerHTML={
+    Object {
+      "__html": "No results for <i>my search</i>",
+    }
+  }
+/>
+`;

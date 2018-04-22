@@ -2590,7 +2590,7 @@ var _react = __webpack_require__(0);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _getColumnCount = __webpack_require__(14);
+var _getColumnCount = __webpack_require__(16);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -2602,7 +2602,7 @@ var INITIAL_STATE_CONTEXT = exports.INITIAL_STATE_CONTEXT = {
   searchTerm: '',
   currentPage: 1,
   canGetMore: false,
-  columnCount: (0, _getColumnCount.getColumnCount)(document.defaultView)
+  columnCount: (0, _getColumnCount.getColumnCount)()
 };
 
 var StateContext = exports.StateContext = (0, _react.createContext)(INITIAL_STATE_CONTEXT);
@@ -3346,6 +3346,143 @@ module.exports = ReactPropTypesSecret;
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
+exports.NoPosts = exports.getNoPostsText = undefined;
+
+var _templateObject = _taggedTemplateLiteral(['\n  width: 100%;\n  padding-right: 0.75rem;\n  padding-left: 0.75rem;\n'], ['\n  width: 100%;\n  padding-right: 0.75rem;\n  padding-left: 0.75rem;\n']);
+
+var _react = __webpack_require__(0);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _propTypes = __webpack_require__(2);
+
+var _propTypes2 = _interopRequireDefault(_propTypes);
+
+var _styledComponents = __webpack_require__(3);
+
+var _styledComponents2 = _interopRequireDefault(_styledComponents);
+
+var _Context = __webpack_require__(4);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _taggedTemplateLiteral(strings, raw) { return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); }
+
+var StyledNoPosts = _styledComponents2.default.div(_templateObject);
+
+var getNoPostsText = exports.getNoPostsText = function getNoPostsText(_ref) {
+  var searchTerm = _ref.searchTerm,
+      fetching = _ref.fetching;
+
+  if (searchTerm.length) {
+    return 'No results for <i>' + searchTerm + '</i>';
+  }
+
+  return fetching ? '' : 'No posts found.';
+};
+
+var NoPosts = exports.NoPosts = function NoPosts(_ref2) {
+  var searchTerm = _ref2.searchTerm,
+      fetching = _ref2.fetching;
+  return _react2.default.createElement(StyledNoPosts, {
+    dangerouslySetInnerHTML: {
+      __html: getNoPostsText({ searchTerm: searchTerm, fetching: fetching })
+    }
+  });
+};
+
+NoPosts.propTypes = {
+  searchTerm: _propTypes2.default.string.isRequired,
+  fetching: _propTypes2.default.bool.isRequired
+};
+
+exports.default = (0, _Context.withStateContext)(NoPosts);
+
+/***/ }),
+/* 14 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.CategoryPicker = undefined;
+
+var _templateObject = _taggedTemplateLiteral(['\n  display: flex;\n  align-items: center;\n  justify-content: flex-end;\n  padding-right: 0;\n  font-size: 79.4%;\n  text-transform: uppercase;\n\n  select {\n    font-size: 1rem;\n  }\n'], ['\n  display: flex;\n  align-items: center;\n  justify-content: flex-end;\n  padding-right: 0;\n  font-size: 79.4%;\n  text-transform: uppercase;\n\n  select {\n    font-size: 1rem;\n  }\n']);
+
+var _react = __webpack_require__(0);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _styledComponents = __webpack_require__(3);
+
+var _styledComponents2 = _interopRequireDefault(_styledComponents);
+
+var _Context = __webpack_require__(4);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _taggedTemplateLiteral(strings, raw) { return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); }
+
+var StyledCategoryPicker = _styledComponents2.default.div(_templateObject);
+
+var CategoryPicker = exports.CategoryPicker = function CategoryPicker(_ref) {
+  var setActiveCategory = _ref.setActiveCategory,
+      categories = _ref.categories,
+      activeCategory = _ref.activeCategory;
+  return categories.length && _react2.default.createElement(
+    StyledCategoryPicker,
+    null,
+    _react2.default.createElement(
+      'label',
+      { htmlFor: 'category-select' },
+      _react2.default.createElement(
+        'span',
+        null,
+        'Category '
+      ),
+      _react2.default.createElement(
+        'select',
+        {
+          id: 'category-select',
+          value: activeCategory,
+          onChange: function onChange(event) {
+            setActiveCategory(event.target.value);
+          }
+        },
+        _react2.default.createElement(
+          'option',
+          { value: 0 },
+          'All'
+        ),
+        categories.map(function (_ref2) {
+          var id = _ref2.id,
+              name = _ref2.name;
+          return _react2.default.createElement(
+            'option',
+            { key: id, value: id },
+            name
+          );
+        })
+      )
+    )
+  );
+};
+
+exports.default = (0, _Context.withStateContext)((0, _Context.withActionContext)(CategoryPicker));
+
+/***/ }),
+/* 15 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
 /**
  * Action creator triggering fetch of posts.
  *
@@ -3498,7 +3635,7 @@ var setColumnCount = exports.setColumnCount = function setColumnCount(columnCoun
 };
 
 /***/ }),
-/* 14 */
+/* 16 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3510,17 +3647,14 @@ Object.defineProperty(exports, "__esModule", {
 /**
  * Determines the number of columns the app body should have.
  *
- * @param {Object} element The current view.
  * @return {number} The number of columns the app body should have.
  */
-var getColumnCount = exports.getColumnCount = function getColumnCount(anElement) {
-  var element = anElement || window;
-
-  if (element.innerWidth > 768) {
+var getColumnCount = exports.getColumnCount = function getColumnCount() {
+  if (window.innerWidth > 768) {
     return 3;
   }
 
-  if (element.innerWidth > 576) {
+  if (window.innerWidth > 576) {
     return 2;
   }
 
@@ -3528,14 +3662,7 @@ var getColumnCount = exports.getColumnCount = function getColumnCount(anElement)
 };
 
 /***/ }),
-/* 15 */
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports = __webpack_require__(44);
-
-
-/***/ }),
-/* 16 */
+/* 17 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3574,7 +3701,7 @@ var ExecutionEnvironment = {
 module.exports = ExecutionEnvironment;
 
 /***/ }),
-/* 17 */
+/* 18 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3617,7 +3744,7 @@ function containsNode(outerNode, innerNode) {
 module.exports = containsNode;
 
 /***/ }),
-/* 18 */
+/* 19 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3659,7 +3786,7 @@ function getActiveElement(doc) /*?DOMElement*/{
 module.exports = getActiveElement;
 
 /***/ }),
-/* 19 */
+/* 20 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3730,7 +3857,7 @@ function shallowEqual(objA, objB) {
 module.exports = shallowEqual;
 
 /***/ }),
-/* 20 */
+/* 21 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3744,7 +3871,7 @@ var _reactDom = __webpack_require__(72);
 
 var _reactDom2 = _interopRequireDefault(_reactDom);
 
-var _ = __webpack_require__(43);
+var _ = __webpack_require__(42);
 
 var _2 = _interopRequireDefault(_);
 
@@ -3766,7 +3893,7 @@ var loadStories = function loadStories() {
 loadStories();
 
 /***/ }),
-/* 21 */
+/* 22 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3790,11 +3917,11 @@ var _styledComponents = __webpack_require__(3);
 
 var _styledComponents2 = _interopRequireDefault(_styledComponents);
 
-var _NoPosts = __webpack_require__(24);
+var _NoPosts = __webpack_require__(13);
 
 var _NoPosts2 = _interopRequireDefault(_NoPosts);
 
-var _Columns = __webpack_require__(23);
+var _Columns = __webpack_require__(24);
 
 var _Columns2 = _interopRequireDefault(_Columns);
 
@@ -3822,7 +3949,7 @@ Body.propTypes = {
 exports.default = (0, _Context.withStateContext)(Body);
 
 /***/ }),
-/* 22 */
+/* 23 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3898,7 +4025,7 @@ Column.propTypes = {
 exports.default = (0, _Context.withStateContext)(Column);
 
 /***/ }),
-/* 23 */
+/* 24 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3918,7 +4045,7 @@ var _propTypes2 = _interopRequireDefault(_propTypes);
 
 var _range = __webpack_require__(69);
 
-var _Column = __webpack_require__(22);
+var _Column = __webpack_require__(23);
 
 var _Column2 = _interopRequireDefault(_Column);
 
@@ -3940,67 +4067,6 @@ Columns.propTypes = {
 exports.default = (0, _Context.withStateContext)(Columns);
 
 /***/ }),
-/* 24 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _templateObject = _taggedTemplateLiteral(['\n  width: 100%;\n  padding-right: 0.75rem;\n  padding-left: 0.75rem;\n'], ['\n  width: 100%;\n  padding-right: 0.75rem;\n  padding-left: 0.75rem;\n']);
-
-var _react = __webpack_require__(0);
-
-var _react2 = _interopRequireDefault(_react);
-
-var _propTypes = __webpack_require__(2);
-
-var _propTypes2 = _interopRequireDefault(_propTypes);
-
-var _styledComponents = __webpack_require__(3);
-
-var _styledComponents2 = _interopRequireDefault(_styledComponents);
-
-var _Context = __webpack_require__(4);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _taggedTemplateLiteral(strings, raw) { return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); }
-
-var StyledNoPosts = _styledComponents2.default.div(_templateObject);
-
-var getNoPostsText = function getNoPostsText(_ref) {
-  var searchTerm = _ref.searchTerm,
-      fetching = _ref.fetching;
-
-  if (searchTerm.length) {
-    return 'No results for <i>' + searchTerm + '</i>';
-  }
-
-  return fetching ? '' : 'No posts found.';
-};
-
-var NoPosts = function NoPosts(_ref2) {
-  var searchTerm = _ref2.searchTerm,
-      fetching = _ref2.fetching;
-  return _react2.default.createElement(StyledNoPosts, {
-    dangerouslySetInnerHTML: {
-      __html: getNoPostsText({ searchTerm: searchTerm, fetching: fetching })
-    }
-  });
-};
-
-NoPosts.propTypes = {
-  searchTerm: _propTypes2.default.string.isRequired,
-  fetching: _propTypes2.default.bool.isRequired
-};
-
-exports.default = (0, _Context.withStateContext)(NoPosts);
-
-/***/ }),
 /* 25 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -4010,69 +4076,24 @@ exports.default = (0, _Context.withStateContext)(NoPosts);
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
+exports.NoPosts = undefined;
 
-var _templateObject = _taggedTemplateLiteral(['\n  display: flex;\n  align-items: center;\n  justify-content: flex-end;\n  padding-right: 0;\n  font-size: 79.4%;\n  text-transform: uppercase;\n\n  select {\n    font-size: 1rem;\n  }\n'], ['\n  display: flex;\n  align-items: center;\n  justify-content: flex-end;\n  padding-right: 0;\n  font-size: 79.4%;\n  text-transform: uppercase;\n\n  select {\n    font-size: 1rem;\n  }\n']);
+var _NoPosts = __webpack_require__(13);
 
-var _react = __webpack_require__(0);
+Object.defineProperty(exports, 'NoPosts', {
+  enumerable: true,
+  get: function get() {
+    return _interopRequireDefault(_NoPosts).default;
+  }
+});
 
-var _react2 = _interopRequireDefault(_react);
+var _Body = __webpack_require__(22);
 
-var _styledComponents = __webpack_require__(3);
-
-var _styledComponents2 = _interopRequireDefault(_styledComponents);
-
-var _Context = __webpack_require__(4);
+var _Body2 = _interopRequireDefault(_Body);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-function _taggedTemplateLiteral(strings, raw) { return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); }
-
-var StyledCategoryPicker = _styledComponents2.default.div(_templateObject);
-
-var CategoryPicker = function CategoryPicker(_ref) {
-  var setActiveCategory = _ref.setActiveCategory,
-      categories = _ref.categories,
-      activeCategory = _ref.activeCategory;
-  return categories.length && _react2.default.createElement(
-    StyledCategoryPicker,
-    null,
-    _react2.default.createElement(
-      'label',
-      { htmlFor: 'category-select' },
-      _react2.default.createElement(
-        'span',
-        null,
-        'Category '
-      ),
-      _react2.default.createElement(
-        'select',
-        {
-          id: 'category-select',
-          value: activeCategory,
-          onChange: function onChange(event) {
-            setActiveCategory(event.target.value);
-          }
-        },
-        _react2.default.createElement(
-          'option',
-          { value: 0 },
-          'All'
-        ),
-        categories.map(function (_ref2) {
-          var id = _ref2.id,
-              name = _ref2.name;
-          return _react2.default.createElement(
-            'option',
-            { key: id, value: id },
-            name
-          );
-        })
-      )
-    )
-  );
-};
-
-exports.default = (0, _Context.withStateContext)((0, _Context.withActionContext)(CategoryPicker));
+exports.default = _Body2.default;
 
 /***/ }),
 /* 26 */
@@ -4084,7 +4105,6 @@ exports.default = (0, _Context.withStateContext)((0, _Context.withActionContext)
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.Header = undefined;
 
 var _templateObject = _taggedTemplateLiteral(['\n  display: flex;\n  flex-wrap: wrap;\n  align-items: center;\n  justify-content: space-between;\n  width: 100%;\n  padding: 0.5rem 0 1.5rem;\n\n  > div {\n    flex: 0 0 100%;\n    max-width: 100%;\n\n    @media screen and (min-width: 768px) {\n      flex: 0 0 50%;\n      width: 50%;\n      max-width: 50%;\n    }\n  }\n'], ['\n  display: flex;\n  flex-wrap: wrap;\n  align-items: center;\n  justify-content: space-between;\n  width: 100%;\n  padding: 0.5rem 0 1.5rem;\n\n  > div {\n    flex: 0 0 100%;\n    max-width: 100%;\n\n    @media screen and (min-width: 768px) {\n      flex: 0 0 50%;\n      width: 50%;\n      max-width: 50%;\n    }\n  }\n']),
     _templateObject2 = _taggedTemplateLiteral(['\n  position: relative;\n\n  svg {\n    position: absolute;\n    top: 0.375rem;\n    right: 1rem;\n    width: 1.125rem;\n    height: 1.125rem;\n    color: rgba(0, 0, 0, 0.7);\n  }\n'], ['\n  position: relative;\n\n  svg {\n    position: absolute;\n    top: 0.375rem;\n    right: 1rem;\n    width: 1.125rem;\n    height: 1.125rem;\n    color: rgba(0, 0, 0, 0.7);\n  }\n']);
@@ -4101,7 +4121,7 @@ var _SearchInput = __webpack_require__(28);
 
 var _SearchInput2 = _interopRequireDefault(_SearchInput);
 
-var _CategoryPicker = __webpack_require__(25);
+var _CategoryPicker = __webpack_require__(14);
 
 var _CategoryPicker2 = _interopRequireDefault(_CategoryPicker);
 
@@ -4115,7 +4135,7 @@ var StyledHeader = _styledComponents2.default.div(_templateObject);
 
 var StyledSearchInputContainer = _styledComponents2.default.div(_templateObject2);
 
-var Header = exports.Header = function Header() {
+var Header = function Header() {
   return _react2.default.createElement(
     StyledHeader,
     null,
@@ -4128,6 +4148,8 @@ var Header = exports.Header = function Header() {
     _react2.default.createElement(_CategoryPicker2.default, null)
   );
 };
+
+exports.default = Header;
 
 /***/ }),
 /* 27 */
@@ -4192,6 +4214,7 @@ SearchIcon.defaultProps = {
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
+exports.SearchInput = undefined;
 
 var _templateObject = _taggedTemplateLiteral(['\n  width: 100%;\n  padding: 0.375rem;\n  font-size: 94.4%;\n  background: #fff;\n  border: 1px solid rgba(53, 53, 53, 0.3);\n  border-radius: 2px;\n'], ['\n  width: 100%;\n  padding: 0.375rem;\n  font-size: 94.4%;\n  background: #fff;\n  border: 1px solid rgba(53, 53, 53, 0.3);\n  border-radius: 2px;\n']),
     _templateObject2 = _taggedTemplateLiteral(['\n  display: block;\n  width: 100%;\n'], ['\n  display: block;\n  width: 100%;\n']),
@@ -4221,7 +4244,7 @@ var StyledLabel = _styledComponents2.default.label(_templateObject2);
 
 var StyledSecretText = _styledComponents2.default.span(_templateObject3);
 
-var SearchInput = function SearchInput(_ref) {
+var SearchInput = exports.SearchInput = function SearchInput(_ref) {
   var setSearchTerm = _ref.setSearchTerm,
       searchTerm = _ref.searchTerm;
   return _react2.default.createElement(
@@ -4259,15 +4282,24 @@ exports.default = (0, _Context.withStateContext)((0, _Context.withActionContext)
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
+exports.CategoryPicker = undefined;
+
+var _CategoryPicker = __webpack_require__(14);
+
+Object.defineProperty(exports, 'CategoryPicker', {
+  enumerable: true,
+  get: function get() {
+    return _interopRequireDefault(_CategoryPicker).default;
+  }
+});
 
 var _Header = __webpack_require__(26);
 
-Object.defineProperty(exports, 'Header', {
-  enumerable: true,
-  get: function get() {
-    return _Header.Header;
-  }
-});
+var _Header2 = _interopRequireDefault(_Header);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+exports.default = _Header2.default;
 
 /***/ }),
 /* 30 */
@@ -4368,7 +4400,9 @@ var _smoothscrollPolyfill2 = _interopRequireDefault(_smoothscrollPolyfill);
 
 var _Header = __webpack_require__(29);
 
-var _Body = __webpack_require__(21);
+var _Header2 = _interopRequireDefault(_Header);
+
+var _Body = __webpack_require__(25);
 
 var _Body2 = _interopRequireDefault(_Body);
 
@@ -4376,7 +4410,7 @@ var _MoreButton = __webpack_require__(30);
 
 var _MoreButton2 = _interopRequireDefault(_MoreButton);
 
-var _actions = __webpack_require__(13);
+var _actions = __webpack_require__(15);
 
 var _effects = __webpack_require__(37);
 
@@ -4386,7 +4420,7 @@ var _reducer = __webpack_require__(38);
 
 var _reducer2 = _interopRequireDefault(_reducer);
 
-var _utils = __webpack_require__(42);
+var _utils = __webpack_require__(41);
 
 var _Context = __webpack_require__(4);
 
@@ -4451,7 +4485,7 @@ var Stories = function (_React$Component) {
           _react2.default.createElement(
             StyledContainer,
             null,
-            _react2.default.createElement(_Header.Header, null),
+            _react2.default.createElement(_Header2.default, null),
             _react2.default.createElement('br', {
               ref: function ref(el) {
                 _this.bodyTop = el;
@@ -4495,10 +4529,8 @@ var Stories = function (_React$Component) {
       if (this.categoryChanged(prevState)) {
         if (this.state.currentPage !== 1) {
           this.dispatch((0, _actions.setCurrentPage)(1));
-        } else {
-          this.fetchPosts();
         }
-
+        this.fetchPosts();
         this.bodyTop.scrollIntoView({ behavior: 'smooth' });
         return;
       }
@@ -4506,14 +4538,14 @@ var Stories = function (_React$Component) {
       if (this.searchTermWasCleared(prevState)) {
         if (this.state.currentPage !== 1) {
           this.dispatch((0, _actions.setCurrentPage)(1));
-        } else {
-          this.fetchPosts();
         }
+        this.fetchPosts();
         return;
       }
 
       if (this.searchTermChanged(prevState)) {
         if (this.state.searchTerm.length > 2) {
+          this.dispatch((0, _actions.setCurrentPage)(1));
           this.fetchPosts();
         }
         return;
@@ -4541,7 +4573,7 @@ var Stories = function (_React$Component) {
   }, {
     key: 'setColumnCount',
     value: function setColumnCount() {
-      this.dispatch((0, _actions.setColumnCount)((0, _utils.getColumnCount)(document.defaultView)));
+      this.dispatch((0, _actions.setColumnCount)((0, _utils.getColumnCount)()));
     }
   }, {
     key: 'dispatch',
@@ -4602,7 +4634,6 @@ exports.default = Stories;
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.FeaturedImage = undefined;
 
 var _templateObject = _taggedTemplateLiteral(['\n  width: 100%;\n  height: auto;\n'], ['\n  width: 100%;\n  height: auto;\n']);
 
@@ -4624,7 +4655,7 @@ function _taggedTemplateLiteral(strings, raw) { return Object.freeze(Object.defi
 
 var StyledImage = _styledComponents2.default.img(_templateObject);
 
-var FeaturedImage = exports.FeaturedImage = function FeaturedImage(_ref) {
+var FeaturedImage = function FeaturedImage(_ref) {
   var altText = _ref.altText,
       featuredImage = _ref.featuredImage;
 
@@ -4647,6 +4678,8 @@ FeaturedImage.propTypes = {
   featuredImage: _propTypes2.default.objectOf(_propTypes2.default.any).isRequired
 };
 
+exports.default = FeaturedImage;
+
 /***/ }),
 /* 33 */
 /***/ (function(module, exports, __webpack_require__) {
@@ -4657,6 +4690,7 @@ FeaturedImage.propTypes = {
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
+exports.PostCategories = undefined;
 
 var _templateObject = _taggedTemplateLiteral(['\n  display: flex;\n  flex-wrap: wrap;\n  padding: 1rem;\n'], ['\n  display: flex;\n  flex-wrap: wrap;\n  padding: 1rem;\n']),
     _templateObject2 = _taggedTemplateLiteral(['\n  flex: 0 0 46%;\n  padding: 0.375rem;\n  margin-right: 0.25rem;\n  margin-bottom: 0.5rem;\n  margin-left: 0.25rem;\n  font-size: 66.6%;\n  line-height: 1.2;\n  color: black;\n  color: var(--color, black);\n  text-transform: uppercase;\n  cursor: pointer;\n  background: rgba(0, 0, 0, 0.075);\n  background: var(--light-gray, rgba(0, 0, 0, 0.075));\n  border: 1px solid rgba(0, 0, 0, 0.15);\n  border-radius: 2px;\n  transition: 0.2s background-color;\n\n  &:hover {\n    background: rgba(0, 0, 0, 0.1);\n    background: var(--background-hover-color, rgba(0, 0, 0, 0.1));\n  }\n'], ['\n  flex: 0 0 46%;\n  padding: 0.375rem;\n  margin-right: 0.25rem;\n  margin-bottom: 0.5rem;\n  margin-left: 0.25rem;\n  font-size: 66.6%;\n  line-height: 1.2;\n  color: black;\n  color: var(--color, black);\n  text-transform: uppercase;\n  cursor: pointer;\n  background: rgba(0, 0, 0, 0.075);\n  background: var(--light-gray, rgba(0, 0, 0, 0.075));\n  border: 1px solid rgba(0, 0, 0, 0.15);\n  border-radius: 2px;\n  transition: 0.2s background-color;\n\n  &:hover {\n    background: rgba(0, 0, 0, 0.1);\n    background: var(--background-hover-color, rgba(0, 0, 0, 0.1));\n  }\n']);
@@ -4683,7 +4717,7 @@ var StyledContainer = _styledComponents2.default.div(_templateObject);
 
 var StyledButton = _styledComponents2.default.button(_templateObject2);
 
-var PostCategories = function PostCategories(_ref) {
+var PostCategories = exports.PostCategories = function PostCategories(_ref) {
   var post = _ref.post,
       setActiveCategory = _ref.setActiveCategory,
       categories = _ref.categories;
@@ -4727,10 +4761,6 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _regenerator = __webpack_require__(15);
-
-var _regenerator2 = _interopRequireDefault(_regenerator);
-
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 var _templateObject = _taggedTemplateLiteral(['\n  position: relative;\n  display: flex;\n  flex-direction: column;\n  min-width: 0;\n  margin-bottom: 1rem;\n  font-size: 89.1%;\n  word-wrap: break-word;\n  background-color: #fff;\n  background-clip: border-box;\n  border: 1px solid rgba(0, 0, 0, 0.125);\n  border-radius: 2px;\n\n  time {\n    font-size: 89.1%;\n  }\n'], ['\n  position: relative;\n  display: flex;\n  flex-direction: column;\n  min-width: 0;\n  margin-bottom: 1rem;\n  font-size: 89.1%;\n  word-wrap: break-word;\n  background-color: #fff;\n  background-clip: border-box;\n  border: 1px solid rgba(0, 0, 0, 0.125);\n  border-radius: 2px;\n\n  time {\n    font-size: 89.1%;\n  }\n']),
@@ -4759,11 +4789,11 @@ var _PostCategories2 = _interopRequireDefault(_PostCategories);
 
 var _FeaturedImage = __webpack_require__(32);
 
+var _FeaturedImage2 = _interopRequireDefault(_FeaturedImage);
+
 var _Context = __webpack_require__(4);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, arguments); return new Promise(function (resolve, reject) { function step(key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { return Promise.resolve(value).then(function (value) { step("next", value); }, function (err) { step("throw", err); }); } } return step("next"); }); }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -4796,12 +4826,13 @@ var Story = function (_React$Component) {
 
     return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Story.__proto__ || Object.getPrototypeOf(Story)).call.apply(_ref, [this].concat(args))), _this), _this.render = function () {
       var _ref2 = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : _this.props,
-          post = _ref2.post;
+          post = _ref2.post,
+          setActiveCategory = _ref2.setActiveCategory;
 
       return _react2.default.createElement(
         StyledStory,
         { key: post.id },
-        post.featuredImage && _react2.default.createElement(_FeaturedImage.FeaturedImage, {
+        post.featuredImage && _react2.default.createElement(_FeaturedImage2.default, {
           altText: post.title.rendered,
           featuredImage: post.featuredImage
         }),
@@ -4825,9 +4856,7 @@ var Story = function (_React$Component) {
           ),
           _react2.default.createElement('p', { dangerouslySetInnerHTML: { __html: post.excerpt.rendered } })
         ),
-        _react2.default.createElement(_PostCategories2.default, {
-          post: post
-        })
+        _react2.default.createElement(_PostCategories2.default, { post: post, setActiveCategory: setActiveCategory })
       );
     }, _temp), _possibleConstructorReturn(_this, _ret);
   }
@@ -4835,44 +4864,10 @@ var Story = function (_React$Component) {
   _createClass(Story, [{
     key: 'componentDidMount',
     value: function componentDidMount() {
-      this.maybeFetchFeaturedMedia();
-    }
-  }, {
-    key: 'maybeFetchFeaturedMedia',
-    value: function () {
-      var _ref3 = _asyncToGenerator( /*#__PURE__*/_regenerator2.default.mark(function _callee() {
-        var _ref4 = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : this.props,
-            post = _ref4.post;
-
-        return _regenerator2.default.wrap(function _callee$(_context) {
-          while (1) {
-            switch (_context.prev = _context.next) {
-              case 0:
-                if (!(post.featured_media === 0)) {
-                  _context.next = 2;
-                  break;
-                }
-
-                return _context.abrupt('return');
-
-              case 2:
-
-                this.props.fetchPostMedia(post.ID, post.featuredMedia);
-
-              case 3:
-              case 'end':
-                return _context.stop();
-            }
-          }
-        }, _callee, this);
-      }));
-
-      function maybeFetchFeaturedMedia() {
-        return _ref3.apply(this, arguments);
+      if (this.props.post.featured_media !== 0) {
+        this.props.fetchPostMedia(this.props.post.ID, this.props.post.featuredMedia);
       }
-
-      return maybeFetchFeaturedMedia;
-    }()
+    }
   }]);
 
   return Story;
@@ -4880,7 +4875,8 @@ var Story = function (_React$Component) {
 
 Story.propTypes = {
   fetchPostMedia: _propTypes2.default.func.isRequired,
-  post: _propTypes2.default.objectOf(_propTypes2.default.any).isRequired
+  post: _propTypes2.default.objectOf(_propTypes2.default.any).isRequired,
+  setActiveCategory: _propTypes2.default.func.isRequired
 };
 exports.default = (0, _Context.withActionContext)(Story);
 
@@ -4934,13 +4930,13 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.MEDIA_CACHE = exports.POSTS_CACHE = undefined;
 
-var _regenerator = __webpack_require__(15);
+var _regenerator = __webpack_require__(45);
 
 var _regenerator2 = _interopRequireDefault(_regenerator);
 
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
-var _actions = __webpack_require__(13);
+var _actions = __webpack_require__(15);
 
 var _selectors = __webpack_require__(39);
 
@@ -5240,45 +5236,6 @@ var getPosts = exports.getPosts = function getPosts(state) {
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-
-var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
-
-var headers = { 'X-WP-TOTALPAGES': 999 };
-
-var mockFetchResponse = function mockFetchResponse(jsonData) {
-  return {
-    json: function json() {
-      return new Promise(function (resolve) {
-        resolve(jsonData);
-      });
-    },
-    ok: true,
-    headers: _extends({}, headers, {
-      get: function get(key) {
-        return headers[key];
-      }
-    })
-  };
-};
-
-var getFetchMock = exports.getFetchMock = function getFetchMock(data) {
-  return function () {
-    return new Promise(function (resolve) {
-      resolve(mockFetchResponse(data));
-    });
-  };
-};
-
-/***/ }),
-/* 41 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
 /**
  * Builds a WordPress REST URL for posts.
  *
@@ -5316,7 +5273,7 @@ var getPostsUrl = exports.getPostsUrl = function getPostsUrl(_ref) {
 };
 
 /***/ }),
-/* 42 */
+/* 41 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -5326,7 +5283,7 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _getColumnCount = __webpack_require__(14);
+var _getColumnCount = __webpack_require__(16);
 
 Object.defineProperty(exports, 'getColumnCount', {
   enumerable: true,
@@ -5335,7 +5292,7 @@ Object.defineProperty(exports, 'getColumnCount', {
   }
 });
 
-var _getPostsUrl = __webpack_require__(41);
+var _getPostsUrl = __webpack_require__(40);
 
 Object.defineProperty(exports, 'getPostsUrl', {
   enumerable: true,
@@ -5344,17 +5301,8 @@ Object.defineProperty(exports, 'getPostsUrl', {
   }
 });
 
-var _getFetchMock = __webpack_require__(40);
-
-Object.defineProperty(exports, 'getFetchMock', {
-  enumerable: true,
-  get: function get() {
-    return _getFetchMock.getFetchMock;
-  }
-});
-
 /***/ }),
-/* 43 */
+/* 42 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -5373,7 +5321,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 exports.default = _Stories2.default;
 
 /***/ }),
-/* 44 */
+/* 43 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /**
@@ -5398,7 +5346,7 @@ var oldRuntime = hadRuntime && g.regeneratorRuntime;
 // Force reevalutation of runtime.js.
 g.regeneratorRuntime = undefined;
 
-module.exports = __webpack_require__(45);
+module.exports = __webpack_require__(44);
 
 if (hadRuntime) {
   // Restore the original runtime.
@@ -5414,7 +5362,7 @@ if (hadRuntime) {
 
 
 /***/ }),
-/* 45 */
+/* 44 */
 /***/ (function(module, exports) {
 
 /**
@@ -6144,6 +6092,13 @@ if (hadRuntime) {
   // of indirect eval which violates Content Security Policy.
   (function() { return this })() || Function("return this")()
 );
+
+
+/***/ }),
+/* 45 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__(43);
 
 
 /***/ }),
@@ -8784,13 +8739,13 @@ if (process.env.NODE_ENV !== "production") {
 var invariant = __webpack_require__(6);
 var React = __webpack_require__(0);
 var warning = __webpack_require__(10);
-var ExecutionEnvironment = __webpack_require__(16);
+var ExecutionEnvironment = __webpack_require__(17);
 var _assign = __webpack_require__(8);
 var emptyFunction = __webpack_require__(5);
 var checkPropTypes = __webpack_require__(11);
-var getActiveElement = __webpack_require__(18);
-var shallowEqual = __webpack_require__(19);
-var containsNode = __webpack_require__(17);
+var getActiveElement = __webpack_require__(19);
+var shallowEqual = __webpack_require__(20);
+var containsNode = __webpack_require__(18);
 var emptyObject = __webpack_require__(9);
 var hyphenateStyleName = __webpack_require__(61);
 var camelizeStyleName = __webpack_require__(59);
@@ -25438,7 +25393,7 @@ module.exports = reactDom;
 /*
  Modernizr 3.0.0pre (Custom Build) | MIT
 */
-var ba=__webpack_require__(6),ea=__webpack_require__(0),m=__webpack_require__(16),A=__webpack_require__(8),C=__webpack_require__(5),fa=__webpack_require__(18),ha=__webpack_require__(19),ja=__webpack_require__(17),ka=__webpack_require__(9);
+var ba=__webpack_require__(6),ea=__webpack_require__(0),m=__webpack_require__(17),A=__webpack_require__(8),C=__webpack_require__(5),fa=__webpack_require__(19),ha=__webpack_require__(20),ja=__webpack_require__(18),ka=__webpack_require__(9);
 function D(a){for(var b=arguments.length-1,c="http://reactjs.org/docs/error-decoder.html?invariant\x3d"+a,d=0;d<b;d++)c+="\x26args[]\x3d"+encodeURIComponent(arguments[d+1]);ba(!1,"Minified React error #"+a+"; visit %s for the full message or use the non-minified dev environment for full errors and additional helpful warnings. ",c)}ea?void 0:D("227");
 function ma(a,b,c,d,e,f,h,g,k){this._hasCaughtError=!1;this._caughtError=null;var v=Array.prototype.slice.call(arguments,3);try{b.apply(c,v)}catch(l){this._caughtError=l,this._hasCaughtError=!0}}
 var E={_caughtError:null,_hasCaughtError:!1,_rethrowError:null,_hasRethrowError:!1,invokeGuardedCallback:function(a,b,c,d,e,f,h,g,k){ma.apply(E,arguments)},invokeGuardedCallbackAndCatchFirstError:function(a,b,c,d,e,f,h,g,k){E.invokeGuardedCallback.apply(this,arguments);if(E.hasCaughtError()){var v=E.clearCaughtError();E._hasRethrowError||(E._hasRethrowError=!0,E._rethrowError=v)}},rethrowCaughtError:function(){return na.apply(E,arguments)},hasCaughtError:function(){return E._hasCaughtError},clearCaughtError:function(){if(E._hasCaughtError){var a=
@@ -29609,7 +29564,7 @@ module.exports = function(originalModule) {
 /* 84 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(20);
+module.exports = __webpack_require__(21);
 
 
 /***/ })

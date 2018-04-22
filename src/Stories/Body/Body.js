@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
-import NoPosts from './NoPosts';
+import NoPostsMessage from './NoPosts';
 import Columns from './Columns';
 
 import { withStateContext } from '../Context';
@@ -16,7 +16,7 @@ const StyledColumnContainer = styled.div`
 const Body = ({ posts }) => (
   <StyledColumnContainer>
     {posts.length === 0 ?
-      <NoPosts />
+      <NoPostsMessage />
       :
       <Columns />
     }

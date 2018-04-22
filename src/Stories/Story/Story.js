@@ -4,8 +4,8 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import distanceInWords from 'date-fns/distance_in_words';
 
-import PostCategories from './PostCategories';
-import { FeaturedImage } from './FeaturedImage';
+import Categories from './PostCategories';
+import FeaturedImage from './FeaturedImage';
 
 import { withActionContext } from '../Context';
 
@@ -41,21 +41,16 @@ class Story extends React.Component {
   static propTypes = {
     fetchPostMedia: PropTypes.func.isRequired,
     post: PropTypes.objectOf(PropTypes.any).isRequired,
+    setActiveCategory: PropTypes.func.isRequired,
   }
 
   componentDidMount() {
-    this.maybeFetchFeaturedMedia();
-  }
-
-  async maybeFetchFeaturedMedia({ post } = this.props) {
-    if (post.featured_media === 0) {
-      return;
+    if (this.props.post.featured_media !== 0) {
+      this.props.fetchPostMedia(this.props.post.ID, this.props.post.featuredMedia);
     }
-
-    this.props.fetchPostMedia(post.ID, post.featuredMedia);
   }
 
-  render = ({ post } = this.props) => (
+  render = ({ post, setActiveCategory } = this.props) => (
     <StyledStory key={post.id}>
       {post.featuredImage && <FeaturedImage
         altText={post.title.rendered}
@@ -75,9 +70,7 @@ class Story extends React.Component {
         </time>
         <p dangerouslySetInnerHTML={{ __html: post.excerpt.rendered }} />
       </StyledStoryBody>
-      <PostCategories
-        post={post}
-      />
+      <Categories post={post} setActiveCategory={setActiveCategory} />
     </StyledStory>
   );
 }

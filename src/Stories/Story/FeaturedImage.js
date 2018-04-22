@@ -7,7 +7,7 @@ const StyledImage = styled.img`
   height: auto;
 `;
 
-export const FeaturedImage = ({ altText, featuredImage }) => {
+const FeaturedImage = ({ altText, featuredImage }) => {
   try {
     const data =
       featuredImage.media_details.sizes.large ||
@@ -30,3 +30,5 @@ FeaturedImage.propTypes = {
   altText: PropTypes.string.isRequired,
   featuredImage: PropTypes.objectOf(PropTypes.any).isRequired,
 };
+
+export default FeaturedImage;

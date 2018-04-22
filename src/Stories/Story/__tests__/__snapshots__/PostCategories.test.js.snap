@@ -1,0 +1,17 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`PostCategories renders 1`] = `
+<div
+  className="sc-bdVaJa fEpVJS"
+>
+  <button
+    className="Stories__category--undefined sc-bwzfXH eUaYFq"
+    dangerouslySetInnerHTML={
+      Object {
+        "__html": "My Category",
+      }
+    }
+    onClick={[Function]}
+  />
+</div>
+`;

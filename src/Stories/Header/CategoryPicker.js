@@ -16,7 +16,7 @@ const StyledCategoryPicker = styled.div`
   }
 `;
 
-const CategoryPicker = ({ setActiveCategory, categories, activeCategory }) => (
+export const CategoryPicker = ({ setActiveCategory, categories, activeCategory }) => (
   categories.length && (
   <StyledCategoryPicker>
     <label htmlFor="category-select">

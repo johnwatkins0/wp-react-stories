@@ -1,6 +1,6 @@
 # wp-react-stories
 
-A masonry-like display of posts from the WordPress REST API. Includes search and a category select input.
+A React-based, masonry-like display of categorized posts drawn from WordPress REST endpoints.
 
 [Demo.](https://johnwatkins0.github.io/wp-react-stories/demo/)
 

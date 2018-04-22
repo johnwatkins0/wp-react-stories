@@ -1,7 +1,7 @@
 {
   "name": "colbycomms/wp-react-stories",
   "description":
-    "A masonry-like display of posts from a WordPress REST endpoint.",
+    "A React-based, masonry-like display of categorized posts drawn from WordPress REST endpoints.",
   "type": "library",
   "require": {
     "php": "^7.1"

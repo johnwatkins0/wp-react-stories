@@ -34,7 +34,7 @@ const StyledButton = styled.button`
   }
 `;
 
-const PostCategories = ({
+export const PostCategories = ({
   post, setActiveCategory, categories,
 }) => (
   <StyledContainer>

@@ -5,9 +5,9 @@ import React from 'react';
 import styled from 'styled-components';
 import smoothScroll from 'smoothscroll-polyfill';
 
-import { Header } from './Header';
-import Body from './Body/Body';
-import MoreButton from './MoreButton';
+import Header from './Header';
+import Body from './Body';
+import More from './MoreButton';
 
 import {
   fetchPosts,
@@ -70,10 +70,8 @@ class Stories extends React.Component {
     if (this.categoryChanged(prevState)) {
       if (this.state.currentPage !== 1) {
         this.dispatch(setCurrentPage(1));
-      } else {
-        this.fetchPosts();
       }
-
+      this.fetchPosts();
       this.bodyTop.scrollIntoView({ behavior: 'smooth' });
       return;
     }
@@ -81,14 +79,14 @@ class Stories extends React.Component {
     if (this.searchTermWasCleared(prevState)) {
       if (this.state.currentPage !== 1) {
         this.dispatch(setCurrentPage(1));
-      } else {
-        this.fetchPosts();
       }
+      this.fetchPosts();
       return;
     }
 
     if (this.searchTermChanged(prevState)) {
       if (this.state.searchTerm.length > 2) {
+        this.dispatch(setCurrentPage(1));
         this.fetchPosts();
       }
       return;
@@ -121,7 +119,7 @@ class Stories extends React.Component {
   }
 
   setColumnCount() {
-    this.dispatch(setColumnCount(getColumnCount(document.defaultView)));
+    this.dispatch(setColumnCount(getColumnCount()));
   }
 
   dispatch(action) {
@@ -165,7 +163,7 @@ class Stories extends React.Component {
             }}
           />
           <Body />
-          <MoreButton />
+          <More />
         </StyledContainer>
       </ActionContext.Provider>
     </StateContext.Provider>
