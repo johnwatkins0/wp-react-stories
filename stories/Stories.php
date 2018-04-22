@@ -2,10 +2,10 @@
 /**
  * Stories.php
  *
- * @package colbycomms/wp-react-stories
+ * @package johnwatkins0/wp-react-stories
  */
 
-namespace ColbyComms\Stories;
+namespace johnwatkins0\Stories;
 
 /**
  * Main plugin class.
@@ -30,7 +30,7 @@ class Stories {
 	 *
 	 * @var string
 	 */
-	const VENDOR = 'colbycomms';
+	const VENDOR = 'johnwatkins0';
 
 	/**
 	 * Text domain.
@@ -44,7 +44,7 @@ class Stories {
 	 *
 	 * @var string
 	 */
-	const FILTER_PREFIX = 'colbycomms__stories__';
+	const FILTER_PREFIX = 'johnwatkins0__stories__';
 
 	/**
 	 * Filter to override whether to enqueue the script.

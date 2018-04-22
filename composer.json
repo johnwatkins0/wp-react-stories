@@ -1,5 +1,5 @@
 {
-  "name": "colbycomms/wp-react-stories",
+  "name": "johnwatkins0/wp-react-stories",
   "description":
     "A React-based, masonry-like display of categorized posts drawn from WordPress REST endpoints.",
   "type": "library",
@@ -21,7 +21,7 @@
   "minimum-stability": "stable",
   "autoload": {
     "psr-4": {
-      "ColbyComms\\Stories\\": "stories/"
+      "johnwatkins0\\Stories\\": "stories/"
     }
   },
   "scripts": {

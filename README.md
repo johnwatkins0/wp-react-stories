@@ -11,7 +11,7 @@ A React-based, masonry-like display of categorized posts drawn from WordPress RE
 If you plan to use the WordPress shortcode, this library can be installed via Composer or activated as a WordPress plugin. To install via Composer, use:
 
 ```
-composer require colbycomms/wp-react-stories
+composer require johnwatkins0/wp-react-stories
 ```
 
 Note the WordPress parts of this plugin require **PHP 7.1 or higher**.
@@ -37,7 +37,7 @@ yarn add wp-react-stories
 First, if you installed this library using Composer and plan to import the component into your Javascript, you need to prevent the plugin's compiled script from enqueuing. In your WordPress project, add the following filter:
 
 ```PHP
-add_filter( 'colbycomms__stories__enqueue_script', '__return_false' );
+add_filter( 'johnwatkins0__stories__enqueue_script', '__return_false' );
 ```
 
 Include the `Stories` component in your project, e.g.:
