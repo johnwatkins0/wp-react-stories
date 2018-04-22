@@ -8,7 +8,6 @@
     "build": "webpack && webpack -p",
     "lint": "eslint src/",
     "stylelint": "stylelint src/",
-    "prepare": "yarn run build",
     "test": "composer lint && composer test && npm run lint && npm run stylelint && jest"
   },
   "husky": {

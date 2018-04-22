@@ -137,10 +137,11 @@ class Stories {
 	 * or in a theme via composer. If the package is in neither of those places and the filter
 	 * is not used, this whole thing will fail.
 	 *
+	 * @param bool $is_theme True to explicitly signal it's a theme context.
 	 * @return string The URL.
 	 */
-	public static function get_dist_directory() : string {
-		if ( file_exists( dirname( __DIR__, 3 ) . '/plugins' ) ) {
+	public static function get_dist_directory( $is_theme = false ) : string {
+		if ( ! $is_theme && file_exists( dirname( __DIR__, 3 ) . '/plugins' ) ) {
 			return plugin_dir_url( dirname( __DIR__ ) . '/index.php' ) . 'dist/';
 		}
 

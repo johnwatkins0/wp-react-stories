@@ -8,6 +8,10 @@ define( 'WP_PLUGIN_URL', '' );
 define( 'ABSPATH', dirname( __DIR__ ) . '/vendor/johnpbloch/wordpress-core/' );
 define( 'WPINC', 'wp-includes/' );
 
+function get_template_directory_uri() {
+	return 'my-template-directory';
+}
+
 function get_bloginfo( $key ) {
 	if ( 'url' === $key ) {
 		return 'http://my-site';

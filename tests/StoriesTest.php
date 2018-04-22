@@ -65,4 +65,11 @@ class StoriesTest extends TestCase {
 			dirname( __DIR__, 2 ) . '/' . Stories::TEXT_DOMAIN . '/dist/'
 		);
 	}
+
+	public function test_get_dist_directory_intheme() {
+		$this->assertEquals(
+			Stories::get_dist_directory( true ),
+			'my-template-directory/vendor/colbycomms/wp-react-stories/dist/'
+		);
+	}
 }
