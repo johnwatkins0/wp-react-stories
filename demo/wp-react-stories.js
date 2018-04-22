@@ -4960,7 +4960,7 @@ var effects = {
               state = getState();
 
               if (action.url in POSTS_CACHE) {
-                _context.next = 11;
+                _context.next = 12;
                 break;
               }
 
@@ -4977,15 +4977,16 @@ var effects = {
             case 9:
               posts = _context.sent;
 
+              console.log(posts, totalPages, canGetMore, (0, _selectors.getCurrentPage)());
               POSTS_CACHE[action.url] = { posts: posts, totalPages: totalPages, canGetMore: canGetMore };
 
-            case 11:
+            case 12:
               newPosts = (0, _selectors.getCurrentPage)(state) === 1 ? POSTS_CACHE[action.url].posts : (0, _selectors.getPosts)(state).concat(POSTS_CACHE[action.url].posts);
 
 
               dispatch((0, _actions.receivePosts)(newPosts, POSTS_CACHE[action.url].totalPages, POSTS_CACHE[action.url].canGetMore));
 
-            case 13:
+            case 14:
             case 'end':
               return _context.stop();
           }
@@ -5213,7 +5214,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
  * @return {number} The current page.
  */
 var getCurrentPage = exports.getCurrentPage = function getCurrentPage(state) {
-  return (0, _lodash2.default)(state, 'currentPage', 0);
+  return (0, _lodash2.default)(state, 'currentPage', 1);
 };
 
 /**
