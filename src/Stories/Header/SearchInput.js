@@ -2,6 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
+import { withStateContext, withActionContext } from '../Context';
+
 const StyledInput = styled.input`
   width: 100%;
   padding: 0.375rem;
@@ -21,22 +23,22 @@ const StyledSecretText = styled.span`
   left: -1000%;
 `;
 
-const SearchInput = ({ searchTerm, onSearchTermChange }) => (
+const SearchInput = ({ setSearchTerm, searchTerm }) => (
   <StyledLabel>
     <StyledSecretText>Search</StyledSecretText>
     <StyledInput
       placeholder="Search"
       value={searchTerm}
-      onChange={event => {
-        onSearchTermChange(event.target.value);
+      onChange={(event) => {
+        setSearchTerm(event.target.value);
       }}
     />
   </StyledLabel>
 );
 
 SearchInput.propTypes = {
-  onSearchTermChange: PropTypes.func.isRequired,
+  setSearchTerm: PropTypes.func.isRequired,
   searchTerm: PropTypes.string.isRequired,
 };
 
-export default SearchInput;
+export default withStateContext(withActionContext(SearchInput));

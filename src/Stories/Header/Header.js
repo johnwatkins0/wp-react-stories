@@ -1,9 +1,8 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
 import SearchInput from './SearchInput';
-import { CategoryPicker } from './CategoryPicker';
+import CategoryPicker from './CategoryPicker';
 import { SearchIcon } from './SearchIcon';
 
 const StyledHeader = styled.div`
@@ -39,41 +38,12 @@ const StyledSearchInputContainer = styled.div`
   }
 `;
 
-export const Header = ({
-  categoriesEndpoint,
-  setCategories,
-  setActiveCategory,
-  activeCategory,
-  categories,
-  searchTerm,
-  fetching,
-  setSearchTerm,
-}) => (
+export const Header = () => (
   <StyledHeader>
     <StyledSearchInputContainer>
-      <SearchInput
-        searchTerm={searchTerm}
-        onSearchTermChange={searchTerm => {
-          setSearchTerm(searchTerm);
-        }}
-      />
+      <SearchInput />
       <SearchIcon />
     </StyledSearchInputContainer>
-    <CategoryPicker
-      url={categoriesEndpoint}
-      setCategories={setCategories}
-      setActiveCategory={setActiveCategory}
-      activeCategory={activeCategory}
-      categories={categories}
-    />
+    <CategoryPicker />
   </StyledHeader>
 );
-
-Header.propTypes = {
-  categoriesEndpoint: PropTypes.string.isRequired,
-  setActiveCategory: PropTypes.func.isRequired,
-  activeCategory: PropTypes.string.isRequired,
-  categories: PropTypes.arrayOf(PropTypes.object).isRequired,
-  searchTerm: PropTypes.string.isRequired,
-  fetching: PropTypes.bool.isRequired,
-};

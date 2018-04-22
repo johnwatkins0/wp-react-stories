@@ -5,7 +5,7 @@ import Stories from '../..';
 const loadStories = () => {
   Array.prototype.forEach.call(
     document.querySelectorAll('[data-stories]'),
-    container => {
+    (container) => {
       const props = {
         container,
         endpoint: container.getAttribute('data-stories-endpoint'),
@@ -14,7 +14,7 @@ const loadStories = () => {
         mediaEndpoint: container.getAttribute('data-media-endpoint'),
       };
       ReactDOM.render(<Stories {...props} />, container);
-    }
+    },
   );
 };
 

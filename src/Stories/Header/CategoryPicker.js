@@ -1,6 +1,7 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import styled from 'styled-components';
+
+import { withStateContext, withActionContext } from '../Context';
 
 const StyledCategoryPicker = styled.div`
   display: flex;
@@ -15,33 +16,29 @@ const StyledCategoryPicker = styled.div`
   }
 `;
 
-export const CategoryPicker = ({
-  activeCategory,
-  categories,
-  setActiveCategory,
-}) =>
-  categories.length ? (
-    <StyledCategoryPicker>
-      <label>
-        <span>Category </span>
-        <select
-          value={activeCategory}
-          onChange={event => {
-            setActiveCategory(event.target.value);
-          }}
-        >
-          <option value={0}>All</option>
-          {categories.map(({ id, name }) => (
-            <option key={id} value={id}>
-              {name}
-            </option>
-          ))}
-        </select>
-      </label>
-    </StyledCategoryPicker>
-  ) : null;
+const CategoryPicker = ({ setActiveCategory, categories, activeCategory }) => (
+  categories.length && (
+  <StyledCategoryPicker>
+    <label htmlFor="category-select">
+      <span>Category </span>
+      <select
+        id="category-select"
+        value={activeCategory}
+        onChange={(event) => {
+          setActiveCategory(event.target.value);
+        }}
+      >
+        <option value={0}>All</option>
+        {categories.map(({ id, name }) => (
+          <option key={id} value={id}>
+            {name}
+          </option>
+               ))}
+      </select>
+    </label>
+  </StyledCategoryPicker>
+  )
+);
 
-CategoryPicker.propTypes = {
-  activeCategory: PropTypes.string.isRequired,
-  setActiveCategory: PropTypes.func.isRequired,
-};
+export default withStateContext(withActionContext(CategoryPicker));
+

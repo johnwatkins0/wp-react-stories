@@ -1,11 +1,13 @@
+/* eslint react/no-danger: 0 */
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import dateFns from 'date-fns';
+import distanceInWords from 'date-fns/distance_in_words';
 
-import { PostCategories } from './PostCategories';
+import PostCategories from './PostCategories';
 import { FeaturedImage } from './FeaturedImage';
-import { fetchMedia } from '../utils/fetchMedia';
+
+import { withActionContext } from '../Context';
 
 const StyledStory = styled.article`
   position: relative;
@@ -37,45 +39,28 @@ const StyledStoryTitle = styled.h1`
 
 class Story extends React.Component {
   static propTypes = {
-    mediaEndpoint: PropTypes.string.isRequired,
-    setActiveCategory: PropTypes.func.isRequired,
-    scrollToTop: PropTypes.func.isRequired,
-  };
-
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      featuredImage: {},
-    };
+    fetchPostMedia: PropTypes.func.isRequired,
+    post: PropTypes.objectOf(PropTypes.any).isRequired,
   }
 
   componentDidMount() {
     this.maybeFetchFeaturedMedia();
   }
 
-  async maybeFetchFeaturedMedia({ post, mediaEndpoint } = this.props) {
+  async maybeFetchFeaturedMedia({ post } = this.props) {
     if (post.featured_media === 0) {
       return;
     }
 
-    const url = `${mediaEndpoint.replace(new RegExp('/$'), '')}/${
-      post.featured_media
-    }`;
-
-    const featuredImage = await fetchMedia(url);
-    this.setState({ featuredImage });
+    this.props.fetchPostMedia(post.ID, post.featuredMedia);
   }
 
-  render = (
-    { post, categories, setActiveCategory, scrollToTop } = this.props,
-    { featuredImage } = this.state
-  ) => (
+  render = ({ post } = this.props) => (
     <StyledStory key={post.id}>
-      <FeaturedImage
+      {post.featuredImage && <FeaturedImage
         altText={post.title.rendered}
-        featuredImage={featuredImage}
-      />
+        featuredImage={post.featuredImage}
+      />}
       <StyledStoryBody>
         <StyledStoryTitle>
           <a
@@ -84,20 +69,17 @@ class Story extends React.Component {
           />
         </StyledStoryTitle>
         <time dateTime={post.date}>
-          {dateFns.distanceInWords(new Date(), post.date, {
+          {distanceInWords(new Date(), post.date, {
             addSuffix: true,
           })}
         </time>
         <p dangerouslySetInnerHTML={{ __html: post.excerpt.rendered }} />
       </StyledStoryBody>
       <PostCategories
-        setActiveCategory={setActiveCategory}
-        categories={categories}
-        scrollToTop={scrollToTop}
         post={post}
       />
     </StyledStory>
   );
 }
 
-export default Story;
+export default withActionContext(Story);

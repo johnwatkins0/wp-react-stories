@@ -2,6 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
+import { withStateContext, withActionContext } from '../Context';
+
 const StyledContainer = styled.div`
   display: flex;
   flex-wrap: wrap;
@@ -32,32 +34,30 @@ const StyledButton = styled.button`
   }
 `;
 
-export const PostCategories = ({
-  categories,
-  post,
-  setActiveCategory,
-  scrollToTop,
+const PostCategories = ({
+  post, setActiveCategory, categories,
 }) => (
   <StyledContainer>
     {categories
       .filter(category => post.categories.indexOf(category.id) !== -1)
-      .map(({ id, name, meta, link, slug }) => (
+      .map(({ id, name, slug }) => (
         <StyledButton
           className={`Stories__category--${slug}`}
           key={id}
           onClick={() => {
-            scrollToTop();
             setActiveCategory(String(id));
           }}
           dangerouslySetInnerHTML={{ __html: name }}
         />
-      ))}
+        ))}
   </StyledContainer>
 );
 
 PostCategories.propTypes = {
-  categories: PropTypes.arrayOf(PropTypes.object).isRequired,
   post: PropTypes.objectOf(PropTypes.any).isRequired,
   setActiveCategory: PropTypes.func.isRequired,
-  scrollToTop: PropTypes.func.isRequired,
+  categories: PropTypes.arrayOf(PropTypes.object).isRequired,
 };
+
+export default withStateContext(withActionContext(PostCategories));
+

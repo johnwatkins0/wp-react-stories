@@ -1,5 +1,4 @@
 import path from 'path';
-import webpack from 'webpack';
 import HtmlWebpackPlugin from 'html-webpack-plugin';
 
 import packageJson from './package.json';
@@ -28,20 +27,11 @@ const main = () => {
       rules: [
         {
           test: /\.js$/,
+          exclude: /node_modules/,
           use: {
             loader: 'babel-loader',
             options: {
-              presets: ['react', 'env', 'stage-0'],
-              plugins: [
-                [
-                  'transform-runtime',
-                  {
-                    helpers: false,
-                    polyfill: false,
-                    regenerator: true,
-                  },
-                ],
-              ],
+              babelrc: true,
             },
           },
         },
