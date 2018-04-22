@@ -1,4 +1,4 @@
-# wp-react-stories
+# wp-react-stories [![Build Status](https://travis-ci.org/johnwatkins0/wp-react-stories.svg?branch=master)](https://travis-ci.org/johnwatkins0/wp-react-stories)
 
 A React-based, masonry-like display of categorized posts drawn from WordPress REST endpoints.
 
