@@ -1,21 +1,16 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Stories from '../..';
+import lodash from 'lodash';
 
-const loadStories = () => {
-  Array.prototype.forEach.call(
-    document.querySelectorAll('[data-stories]'),
-    (container) => {
-      const props = {
-        container,
-        endpoint: container.getAttribute('data-stories-endpoint'),
-        perPage: container.getAttribute('data-per-page') || '12',
-        categoriesEndpoint: container.getAttribute('data-categories-endpoint'),
-        mediaEndpoint: container.getAttribute('data-media-endpoint'),
-      };
-      ReactDOM.render(<Stories {...props} />, container);
-    },
-  );
-};
+lodash.set(global, 'React', React);
+lodash.set(global, 'lodash', lodash);
+lodash.set(global, 'wp', {
+  element: {
+    Component: React.Component,
+    render: ReactDOM.render,
+    createContext: React.createContext,
+  },
+});
 
-loadStories();
+require('../..');
+

@@ -4,10 +4,15 @@
   "description": "A React-based, masonry-like display of categorized posts drawn from WordPress REST endpoints.",
   "main": "src/",
   "scripts": {
-    "start": "webpack-dev-server",
-    "build": "webpack && webpack -p",
+    "start": "webpack -w --config webpack/webpack.config.babel.js",
+    "start:demo": "webpack-dev-server --config webpack/webpack.demo.config.babel.js",
+    "build:dev": "webpack --config webpack/webpack.config.babel.js",
+    "build:prod": "webpack --config webpack/webpack.config.babel.js -p",
+    "build":
+      "npm run build:dev && npm run build:prod && webpack --config webpack/webpack.demo.config.babel.js && webpack -p --config webpack/webpack.demo.config.babel.js",
     "lint": "eslint src/",
     "stylelint": "stylelint src/",
+    "jest": "jest",
     "test": "composer lint && composer test && npm run lint && npm run stylelint && jest"
   },
   "husky": {
@@ -41,6 +46,7 @@
     "eslint-plugin-react": "^7.7.0",
     "html-webpack-plugin": "^2.30.1",
     "husky": "^1.0.0-rc.2",
+    "ignore-loader": "^0.1.2",
     "jest": "^22.4.3",
     "react-test-renderer": "^16.3.1",
     "sinon": "^4.5.0",
@@ -50,16 +56,16 @@
     "stylelint-order": "^0.8.0",
     "stylelint-processor-styled-components": "^1.2.2",
     "webpack": "^2.5.0",
+    "webpack-bundle-analyzer": "^2.11.1",
     "webpack-dev-server": "^2.11.1"
   },
   "dependencies": {
     "date-fns": "^1.28.5",
-    "lodash.get": "^4.4.2",
-    "lodash.set": "^4.3.2",
+    "gutenberg": "https://github.com/WordPress/gutenberg",
+    "lodash": "^4.17.5",
     "prop-types": "^15.5.10",
-    "range": "0.0.3",
-    "react": "^16.2.0",
-    "react-dom": "^16.2.0",
+    "react": "^16.3.2",
+    "react-dom": "^16.3.2",
     "smoothscroll-polyfill": "^0.4.0",
     "styled-components": "^3.1.6"
   }

@@ -1,6 +1,6 @@
-import React, { createContext } from 'react';
-
 import { getColumnCount } from './utils/getColumnCount';
+
+const { createContext } = wp.element;
 
 export const INITIAL_STATE_CONTEXT = {
   activeCategory: 0,

@@ -8,8 +8,10 @@ module.exports = {
     'react/jsx-filename-extension': 0,
     'react/no-unused-prop-types': 0,
     'react/no-unused-state': 0,
+    'react/react-in-jsx-scope': 0,
   },
   globals: {
-    wpApiSettings: true,
+    wp: true,
+    lodash: true,
   },
 };

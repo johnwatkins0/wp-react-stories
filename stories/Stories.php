@@ -23,7 +23,7 @@ class Stories {
 	 *
 	 * @var bool
 	 */
-	const PROD = true;
+	const PROD = false;
 
 	/**
 	 * The vendor name.
@@ -65,6 +65,8 @@ class Stories {
 	 */
 	public static function init() {
 		add_action( 'init', [ __CLASS__, 'add_shortcode' ] );
+		add_action( 'init', [ __CLASS__, 'register_assets' ] );
+		add_action( 'init', [ __CLASS__, 'register_block' ] );
 		add_action( 'wp_enqueue_scripts', [ __CLASS__, 'enqueue_script' ] );
 	}
 
@@ -106,6 +108,30 @@ class Stories {
 	}
 
 	/**
+	 * Registers scripts and styles.
+	 */
+	public static function register_assets() {
+		$dist = self::get_dist_directory();
+		$min  = self::PROD ? '.min' : '';
+
+		wp_register_script(
+			self::TEXT_DOMAIN,
+			$dist . self::TEXT_DOMAIN . "$min.js",
+			[ 'wp-blocks', 'wp-element', 'lodash' ],
+			self::VERSION,
+			true
+		);
+
+		wp_register_script(
+			self::TEXT_DOMAIN . '-editor',
+			$dist . self::TEXT_DOMAIN . "-editor$min.js",
+			[ 'wp-blocks', 'wp-element' ],
+			self::VERSION,
+			true
+		);
+	}
+
+	/**
 	 * Enqueues this plugin's script and style.
 	 *
 	 * @return void
@@ -123,13 +149,7 @@ class Stories {
 		$min = true === self::PROD ? '.min' : '';
 		$dist = self::get_dist_directory();
 
-		wp_enqueue_script(
-			self::TEXT_DOMAIN,
-			"$dist/" . self::TEXT_DOMAIN . "$min.js",
-			[],
-			self::VERSION,
-			true
-		);
+		wp_enqueue_script( self::TEXT_DOMAIN );
 	}
 
 	/**
@@ -146,5 +166,22 @@ class Stories {
 		}
 
 		return get_template_directory_uri() . '/vendor/' . self::VENDOR . '/' . self::TEXT_DOMAIN . '/dist/';
+	}
+
+	/**
+	 * Adds the editor block.
+	 */
+	public static function register_block() {
+		if ( ! function_exists( 'register_block_type' ) ) {
+			return;
+		}
+
+		register_block_type(
+			self::VENDOR . '/' . self::TEXT_DOMAIN,
+			[
+				'editor_script' => self::TEXT_DOMAIN . '-editor',
+				'editor_style'  => self::TEXT_DOMAIN . '-editor',
+			]
+		);
 	}
 }

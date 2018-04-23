@@ -1,33 +1,32 @@
+/* eslint import/no-extraneous-dependencies: 0 */
 import path from 'path';
 import HtmlWebpackPlugin from 'html-webpack-plugin';
 
-import packageJson from './package.json';
+import packageJson from '../package.json';
 
 const main = () => {
-  const PROD = process.argv.includes('-p');
-  const min = PROD ? '.min' : '';
   const entry = {
-    [packageJson.name]: ['./demo/src/index.js'],
+    [packageJson.name]: path.resolve(__dirname, '../demo/src/index.js'),
   };
-  const filename = `${packageJson.name}${min}.js`;
+
+  const filename = '[name].js';
 
   return {
     entry,
     output: {
       filename,
-      path: path.resolve(__dirname, PROD ? 'dist' : 'demo'),
+      path: path.resolve(__dirname, '../demo'),
     },
     plugins: [
       new HtmlWebpackPlugin({
-        filename: path.resolve(__dirname, 'demo/index.html'),
-        template: 'demo/src/index.html',
+        filename: path.resolve(__dirname, '../demo/index.html'),
+        template: path.resolve(__dirname, '../demo/src/index.html'),
       }),
     ],
     module: {
       rules: [
         {
           test: /\.js$/,
-          exclude: /node_modules/,
           use: {
             loader: 'babel-loader',
             options: {

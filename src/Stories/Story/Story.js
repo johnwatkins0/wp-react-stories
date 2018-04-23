@@ -1,5 +1,4 @@
 /* eslint react/no-danger: 0 */
-import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import distanceInWords from 'date-fns/distance_in_words';
@@ -8,6 +7,8 @@ import Categories from './PostCategories';
 import FeaturedImage from './FeaturedImage';
 
 import { withActionContext } from '../Context';
+
+const { Component } = wp.element;
 
 const StyledStory = styled.article`
   position: relative;
@@ -37,7 +38,7 @@ const StyledStoryTitle = styled.h1`
   line-height: 1.333;
 `;
 
-class Story extends React.Component {
+class Story extends Component {
   static propTypes = {
     fetchPostMedia: PropTypes.func.isRequired,
     post: PropTypes.objectOf(PropTypes.any).isRequired,
