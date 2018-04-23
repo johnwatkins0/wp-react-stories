@@ -1,7 +1,5 @@
 /* eslint react/no-danger: 0 */
-
 import PropTypes from 'prop-types';
-import React from 'react';
 import styled from 'styled-components';
 import smoothScroll from 'smoothscroll-polyfill';
 
@@ -24,13 +22,15 @@ import reducer from './store/reducer';
 import { getColumnCount, getPostsUrl } from './utils';
 import { StateContext, ActionContext, INITIAL_STATE_CONTEXT } from './Context';
 
+const { Component } = wp.element;
+
 smoothScroll.polyfill();
 
 const StyledContainer = styled.div`
   width: 100%;
 `;
 
-class Stories extends React.Component {
+class Stories extends Component {
   static propTypes = {
     endpoint: PropTypes.string.isRequired,
     categoriesEndpoint: PropTypes.string.isRequired,

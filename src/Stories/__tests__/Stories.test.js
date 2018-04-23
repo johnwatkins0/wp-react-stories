@@ -2,7 +2,7 @@ import React from 'react';
 import Enzyme, { shallow } from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
 import renderer from 'react-test-renderer';
-import set from 'lodash.set';
+import set from 'lodash/set';
 
 import Stories from '..';
 import { posts } from './testData';

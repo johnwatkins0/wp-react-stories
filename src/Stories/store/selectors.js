@@ -1,4 +1,4 @@
-import get from 'lodash.get';
+const { get } = lodash;
 
 /**
  * Gets the current page from the app state.

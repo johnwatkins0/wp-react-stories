@@ -1,10 +1,10 @@
-import React from 'react';
 import PropTypes from 'prop-types';
-import { range } from 'range';
 
 import Column from './Column';
 
 import { withStateContext } from '../Context';
+
+const { range } = lodash;
 
 const Columns = ({ columnCount }) =>
   range(0, columnCount).map(columnNumber => (

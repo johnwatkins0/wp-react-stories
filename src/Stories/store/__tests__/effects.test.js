@@ -1,4 +1,4 @@
-import set from 'lodash.set';
+import set from 'lodash/set';
 
 import effects, { MEDIA_CACHE, POSTS_CACHE } from '../effects';
 import { receivePosts, receiveCategories, receivePostMedia, updatePosts } from '../actions';
