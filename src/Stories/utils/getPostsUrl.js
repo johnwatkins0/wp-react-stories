@@ -31,5 +31,5 @@ export const getPostsUrl = ({
     url = `${url}&page=${currentPage}`;
   }
 
-  return `${url}&_fields=title,content,excerpt,id,featured_media,categories,date`;
+  return `${url}&_fields=title,content,excerpt,id,featured_media,categories,date,link`;
 };
